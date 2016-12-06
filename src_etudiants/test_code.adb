@@ -1,4 +1,4 @@
-with Ada.Integer_Text_IO,Ada.Text_IO; use Ada.Integer_Text_IO,Ada.Text_IO; with Code; use Code;
+with Ada.Text_IO, Ada.Integer_Text_IO, Code; use  Ada.Text_IO, Ada.Integer_Text_IO, Code;
 procedure Test_Code is
 C,D : Code_Binaire;
 B : Bit := ZERO;

@@ -1,6 +1,17 @@
 with Ada.Integer_Text_IO,Ada.Text_IO; use Ada.Integer_Text_IO,Ada.Text_IO; with Ada.Unchecked_Deallocation;
 package body Code is 
 
+	-- Definition Code_Binaire_Interne
+    type Code_Binaire_Interne is record
+        Val: Bit;
+        Suiv: Code_Binaire;
+    end record;
+	-- Definition Iterateur_Code_Interne
+    type Iterateur_Code_Interne is record
+        Val: Code_Binaire;
+    end record;
+
+    -- Procedures pour vider allocation de memoire
 	procedure Libere is new Ada.Unchecked_Deallocation (Code_Binaire_Interne, Code_Binaire);
 	procedure Libere is new Ada.Unchecked_Deallocation (Iterateur_Code_Interne, Iterateur_Code);
 

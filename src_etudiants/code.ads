@@ -79,18 +79,10 @@ private
 
 	type Code_Binaire is access Code_Binaire_Interne;
 
-    type Code_Binaire_Interne is record
-        Val: Bit;
-        Suiv: Code_Binaire;
-    end record;
-
 	-- type prive: a definir dans le body du package, code.adb
 	type Iterateur_Code_Interne;
 
 	type Iterateur_Code is access Iterateur_Code_Interne;
 
-    type Iterateur_Code_Interne is record
-        Val: Code_Binaire;
-    end record;
 
 end Code;

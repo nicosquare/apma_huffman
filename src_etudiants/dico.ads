@@ -1,28 +1,29 @@
-with code; use code;
-with Ada.Streams.Stream_IO; 
-
+with Code; use Code;
 -- Dictionnaire dont les cles sont des caracteres, et les valeurs
 -- un code binaire associe (par defaut)
 
 package Dico is
 
+
+	type Info_Caractere_Interne;
+	type Info_Caractere is access Info_Caractere_Interne;
 	-- Informations associees a un caractere
-	type Info_Caractere is record
+	type Info_Caractere_Interne is record
+        Occ: Integer;
 		Code : Code_Binaire;
-		-- A modifier/completer selon les besoins!
 	end record;
 
 	-- La structure du dictionnaire lui-meme, privee
 	type Dico_Caracteres is private;
 	
-	Caractere_Absent : exception;
+	Caractere_Absent, Dico_Vide : exception;
 
 	-- Cree un dictionnaire D, initialement vide	
 	function Cree_Dico return Dico_Caracteres;
 
 	-- Libere le dictionnaire D
 	-- garantit: en sortie toute la memoire a ete libere, et D = null.
-	procedure Libere(D : in out Dico_Caracteres);
+	procedure Libere_Dico(D : in out Dico_Caracteres);
 	
 	-- Affiche pour chaque caractere: son nombre d'occurences et son code
 	-- (s'il a ete genere)
@@ -38,7 +39,7 @@ package Dico is
 	-- Associe les infos associees a un caractere
 	-- (operation plus generale, si necessaire)
 	procedure Set_Infos(C : in Character;
-	                    Infos : in Info_Caractere;
+	                    Info : in Info_Caractere;
 	                    D : in out Dico_Caracteres);
 
 -- Acces aux informations sur un caractere
