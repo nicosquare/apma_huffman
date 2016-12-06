@@ -7,7 +7,7 @@ RV NO_IO
 RV NO_DEFAULT_INITIALIZATION
 RV SPARK_05
 
-U test_dico%b		test_dico.adb		a49e341e NE OO SU
+U test_dico%b		test_dico.adb		9b722a83 NE OO SU
 W ada%s			ada.ads			ada.ali
 W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
 W ada.tags%s		a-tags.adb		a-tags.ali
@@ -45,7 +45,7 @@ D s-stopoo.ads		20131010103753 b16154c2 system.storage_pools%s
 D s-traent.ads		20140730135025 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20140731130224 9d58a4c0 system.unsigned_types%s
 D s-wchcon.ads		20140718092328 1b7d22d2 system.wch_con%s
-D test_dico.adb		20161206215247 2406f57a test_dico%b
+D test_dico.adb		20161206222049 1beaebe7 test_dico%b
 X 1 ada.ads
 16K9*Ada 19e8 31|1r6 1r19 1r57 1r70
 X 4 a-inteio.ads
@@ -66,7 +66,7 @@ X 11 code.ads
 13i9*UN{11I17} 31|21r18 28r18 36r18 37r18
 15P14*Code_Binaire 31|6r15
 18V18*Cree_Code{15P14} 31|9s15 17s11 25s11 33s11
-30U19*Affiche 31|15s5 23s5 31s5 39s5
+30U19*Affiche 31|15s5 23s5 31s5 39s5 71s9
 33U19*Ajoute_Avant 31|10s5 11s5 12s5 13s5 18s5 19s5 20s5 21s5 26s5 27s5 28s5
 . 29s5 34s5 35s5 36s5 37s5
 X 12 dico.ads
@@ -78,12 +78,13 @@ X 12 dico.ads
 33U19*Set_Code 31|44s9 46s9 48s9 50s9 52s9
 38U19*Set_Infos 31|55s9
 45V18*Est_Present{boolean} 31|61s12
+50V18*Get_Code{11|15P14} 31|71s17
 62V18*Nb_Caracteres_Differents{natural} 31|86s13
 66V18*Nb_Total_Caracteres{natural} 31|90s13
 X 31 test_dico.adb
 2U11*Test_Dico 2b11 95l5 95t14
 3p1 D1{12|14P14} 42m9 44m23 44r23 46m23 46r23 48m23 48r23 50m23 50r23 52m23
-. 52r23 55m23 55r23 57r17 61r26 73r17 86r38 90r33
+. 52r23 55m23 55r23 57r17 61r26 71r30 73r17 86r38 90r33
 3p4 D2{12|14P14}
 3p7 D3{12|14P14}
 3p10 D4{12|14P14}
