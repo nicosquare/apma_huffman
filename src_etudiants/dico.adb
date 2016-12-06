@@ -41,11 +41,11 @@ package body Dico is
 			raise Dico_Vide with "Dictionnaire vide";
 		else
 			while Tmp /= null loop
-	            --Put("Char: ");
+	            Put("Char: ");
 	            Put(Tmp.Char);
-	            --Put(" Occ: ");
+	            Put(" Occ: ");
 	            Put(Tmp.Infos.Occ,1);
-	            --Put(" Code: ");
+	            Put(" Code: ");
 	            Affiche(Tmp.Infos.Code);
 	            Tmp := Tmp.Suiv;
 	        end loop;
@@ -62,66 +62,42 @@ package body Dico is
 	Tmp : Dico_Caracteres := D;
 	begin
 		if D = null then
-			Put_Line("Vacio");
 			Info := new Info_Caractere_Interne'(1,Code);
 			D := new Dico_Caracteres_Interne'(C,Info,null);
 		else
-			if D.Suiv = null then
-				Put("1 elemento ");
-				Put(D.Char);
-				New_Line;
-				Info := new Info_Caractere_Interne'(1,Code);
-				Tmp.Suiv := new Dico_Caracteres_Interne'(C,Info,null);
+			while (Tmp.Suiv /= null and Tmp.Char /= C) loop
+				Tmp := Tmp.Suiv;
+			end loop;
+			if Tmp.Char = C then
+				Tmp.Infos.Occ := Tmp.Infos.Occ + 1;
 			else
-				Put("Mas de 1 elemento");
-				Put(D.Char);
-				New_Line;
-				if C > D.Suiv.Char then
-					Set_Code(C,Code,D.Suiv);
+				if Tmp.Suiv = null then
+					Info := new Info_Caractere_Interne'(1,Code);
+					Tmp.Suiv := new Dico_Caracteres_Interne'(C,Info,null);
 				end if;
 			end if;
 		end if;
-		Libere_Info(Info);
-        Libere_Dico(Tmp);
 	end Set_Code;
 
 	-- Associe les infos associees a un caractere
 	-- (operation plus generale, si necessaire)
 	procedure Set_Infos(C : in Character; Info : in Info_Caractere; D : in out Dico_Caracteres) is
-	Tmp : Dico_Caracteres;
-	DCour : Dico_Caracteres := D;
-	DSuiv : Dico_Caracteres;
+	Tmp : Dico_Caracteres := D;
 	begin
 		if D = null then
 			D := new Dico_Caracteres_Interne'(C,Info,null);
 		else
-			DSuiv := D.Suiv;
-			while DSuiv /= null loop
-				if DSuiv.Char < C then
-					DCour := DSuiv;
-					DSuiv := DSuiv.Suiv;
-				else
-					if DSuiv.Char = C then
-						DSuiv.Infos.Occ := DSuiv.Infos.Occ + 1;
-					else
-						if DCour.Char < C then
-							Tmp := new Dico_Caracteres_Interne'(C,Info,DSuiv);
-							DCour.Suiv := Tmp;
-						else
-							if DCour.Char = C then
-								DCour.Infos.Occ := DCour.Infos.Occ + 1;
-							else
-								Tmp := new Dico_Caracteres_Interne'(C,Info,DCour);
-								D := Tmp;
-							end if;
-						end if;
-					end if;
+			while (Tmp.Suiv /= null and Tmp.Char /= C) loop
+				Tmp := Tmp.Suiv;
+			end loop;
+			if Tmp.Char = C then
+				Tmp.Infos.Occ := Tmp.Infos.Occ + 1;
+			else
+				if Tmp.Suiv = null then
+					Tmp.Suiv := new Dico_Caracteres_Interne'(C,Info,null);
 				end if;
-	        end loop;
+			end if;
 		end if;
-        Libere_Dico(Tmp);
-        Libere_Dico(DCour);
-        Libere_Dico(DSuiv);
 	end Set_Infos;
 
 -- Acces aux informations sur un caractere
@@ -134,11 +110,9 @@ package body Dico is
 		if D = null then
 			raise Dico_Vide with "Dictionnaire vide";
 		else
-			while (Tmp /= null or not EP)  loop
-				if(Tmp.Char = C) then
-					EP := True;
-				end if;
-	            Tmp := Tmp.Suiv;
+			while (Tmp /= null and not EP)  loop
+				EP := (Tmp.Char = C);
+				Tmp := Tmp.Suiv;
 	        end loop;
 		end if;
         Libere_Dico(Tmp);
@@ -148,19 +122,18 @@ package body Dico is
 	-- Retourne le code binaire d'un caractere
 	--  -> leve l'exception Caractere_Absent si C n'est pas dans D
 	function Get_Code(C : Character; D : Dico_Caracteres) return Code_Binaire is
-	Tmp : Dico_Caracteres := D;
 	Code : Code_Binaire;
+	Tmp : Dico_Caracteres := D;
 	begin
-		if not Est_Present(C,D) then
+		if not Est_Present(C,Tmp) then
 			raise Caractere_Absent with "Caractere n'est pas present";
 		else
-			while Tmp.Char /= C  loop
-				Tmp := Tmp.Suiv;
-	        end loop;
-	        Code := Tmp.Infos.Code;
+			if Tmp.Char = C then
+				return Tmp.Infos.Code;
+			else
+				return Get_Code(C,Tmp.Suiv);
+			end if;
 		end if;
-		Libere_Dico(Tmp);
-		return Code;
 	end Get_Code;
 
 	-- Retourne les infos associees a un caractere

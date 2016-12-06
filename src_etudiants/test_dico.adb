@@ -1,6 +1,7 @@
 with Ada.Text_IO, Ada.Integer_Text_IO, Code, Dico; use  Ada.Text_IO, Ada.Integer_Text_IO, Code, Dico;
 procedure Test_Dico is
 D1,D2,D3,D4 : Dico_Caracteres;
+I : Info_Caractere;
 C : Character;
 C1,C2,C3,C4 : Code_Binaire;
 begin
@@ -43,11 +44,39 @@ begin
 	Set_Code(C,C1,D1);
 	C := 'b';
 	Set_Code(C,C2,D1);
-	--C := 'c';
-	--Set_Code(C,C3,D1);
-	--C := 'd';
-	--Set_Code(C,C1,D1);
+	C := 'b';
+	Set_Code(C,C2,D1);
+	C := 'a';
+	Set_Code(C,C1,D1);
+	C := 'c';
+	Set_Code(C,C3,D1);
+	C := 'D';
+	I := new Info_Caractere_Interne'(5,C4);
+	Set_Infos(C,I,D1);
 	Affiche(D1);
 
+	C := 'X';
+	Put(C);
+	if Est_Present(C,D1) then
+		Put_Line(" Est Present");
+	else
+		Put_Line(" Pas Present");
+	end if;
+
+	C := 'b';
+	Put(C);
+	Put(" => code => ");
+	Affiche(Get_Code(C,D1));
+
+	Affiche(D1);
+
+	C := 'b';
+	--I := Get_Infos(C,D1);
+	Put(C);
+	Put(" => Info => ");
+	--Put(" Occ: ");
+	--Put(I.Occ);
+	--Put(" Code: ");
+	--Affiche(I.Code);
 
 end Test_Dico;
