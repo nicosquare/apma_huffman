@@ -10,7 +10,6 @@ package body Dico is
 
     -- Procedures pour vider allocation de memoire
 	procedure Libere is new Ada.Unchecked_Deallocation (Dico_Caracteres_Interne, Dico_Caracteres);
-	procedure Libere is new Ada.Unchecked_Deallocation (Info_Caractere_Interne, Info_Caractere);
 	
 	-- Cree un dictionnaire D, initialement vide	
 	function Cree_Dico return Dico_Caracteres is
@@ -24,13 +23,6 @@ package body Dico is
 	begin
 		Libere(D);
 	end Libere_Dico;
-
-	-- Libere l'information de Character
-	-- garantit: en sortie toute la memoire a ete libere.
-	procedure Libere_Info(I : in out Info_Caractere) is
-	begin
-		Libere(I);
-	end Libere_Info;
 	
 	-- Affiche pour chaque caractere: son nombre d'occurences et son code
 	-- (s'il a ete genere)
@@ -62,7 +54,7 @@ package body Dico is
 	Tmp : Dico_Caracteres := D;
 	begin
 		if D = null then
-			Info := new Info_Caractere_Interne'(1,Code);
+			Info := Info_Caractere'(1,Code);
 			D := new Dico_Caracteres_Interne'(C,Info,null);
 		else
 			while (Tmp.Suiv /= null and Tmp.Char /= C) loop
@@ -72,7 +64,7 @@ package body Dico is
 				Tmp.Infos.Occ := Tmp.Infos.Occ + 1;
 			else
 				if Tmp.Suiv = null then
-					Info := new Info_Caractere_Interne'(1,Code);
+					Info := Info_Caractere'(1,Code);
 					Tmp.Suiv := new Dico_Caracteres_Interne'(C,Info,null);
 				end if;
 			end if;
@@ -122,16 +114,14 @@ package body Dico is
 	-- Retourne le code binaire d'un caractere
 	--  -> leve l'exception Caractere_Absent si C n'est pas dans D
 	function Get_Code(C : Character; D : Dico_Caracteres) return Code_Binaire is
-	Code : Code_Binaire;
-	Tmp : Dico_Caracteres := D;
 	begin
-		if not Est_Present(C,Tmp) then
+		if not Est_Present(C,D) then
 			raise Caractere_Absent with "Caractere n'est pas present";
 		else
-			if Tmp.Char = C then
-				return Tmp.Infos.Code;
+			if D.Char = C then
+				return D.Infos.Code;
 			else
-				return Get_Code(C,Tmp.Suiv);
+				return Get_Code(C,D.Suiv);
 			end if;
 		end if;
 	end Get_Code;
@@ -139,19 +129,16 @@ package body Dico is
 	-- Retourne les infos associees a un caractere
 	--  -> leve l'exception Caractere_Absent si C n'est pas dans D
 	function Get_Infos(C : Character; D : Dico_Caracteres) return Info_Caractere is
-	Tmp : Dico_Caracteres := D;
-	Info : Info_Caractere;
 	begin
 		if not Est_Present(C,D) then
 			raise Caractere_Absent with "Caractere n'est pas present";
 		else
-			while Tmp.Char /= C  loop
-				Tmp := Tmp.Suiv;
-	        end loop;
-	        Info := Tmp.Infos;
+			if D.Char = C then
+				return D.Infos;
+			else
+				return Get_Infos(C,D.Suiv);
+			end if;
 		end if;
-		Libere_Dico(Tmp);
-		return Info;
 	end Get_Infos;
 
 

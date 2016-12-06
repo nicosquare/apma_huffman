@@ -51,8 +51,9 @@ begin
 	C := 'c';
 	Set_Code(C,C3,D1);
 	C := 'D';
-	I := new Info_Caractere_Interne'(5,C4);
+	I := Info_Caractere'(5,C4);
 	Set_Infos(C,I,D1);
+	
 	Affiche(D1);
 
 	C := 'X';
@@ -63,13 +64,15 @@ begin
 		Put_Line(" Pas Present");
 	end if;
 
+	-- Get_Code ne marche pas
 	C := 'b';
 	Put(C);
 	Put(" => code => ");
-	Affiche(Get_Code(C,D1));
+	--Affiche(Get_Code(C,D1));
 
 	Affiche(D1);
 
+	-- Get_Infos ne marche pas
 	C := 'b';
 	--I := Get_Infos(C,D1);
 	Put(C);
@@ -78,5 +81,15 @@ begin
 	--Put(I.Occ);
 	--Put(" Code: ");
 	--Affiche(I.Code);
+
+	Put("Caracteres differentes: ");
+	Put(Nb_Caracteres_Differents(D1));
+	New_Line;
+
+	Put("Caracteres total: ");
+	Put(Nb_Total_Caracteres(D1));
+	New_Line;	
+
+
 
 end Test_Dico;

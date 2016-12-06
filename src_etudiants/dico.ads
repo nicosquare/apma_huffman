@@ -4,11 +4,8 @@ with Code; use Code;
 
 package Dico is
 
-
-	type Info_Caractere_Interne;
-	type Info_Caractere is access Info_Caractere_Interne;
 	-- Informations associees a un caractere
-	type Info_Caractere_Interne is record
+	type Info_Caractere is record
         Occ: Integer;
 		Code : Code_Binaire;
 	end record;
