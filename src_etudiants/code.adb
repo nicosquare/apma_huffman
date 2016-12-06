@@ -1,5 +1,5 @@
 with Ada.Integer_Text_IO,Ada.Text_IO; use Ada.Integer_Text_IO,Ada.Text_IO; with Ada.Unchecked_Deallocation;
-package body Code is 
+package body Code is
 
 	-- Definition Code_Binaire_Interne
     type Code_Binaire_Interne is record
@@ -33,15 +33,15 @@ package body Code is
 	begin
 		Libere(C);
 	end Libere_Code;
-	
+
 	-- Retourne le nb de bits d'un code
 	function Longueur(C : in Code_Binaire) return Natural is
 	L: Integer := 0;
     Tmp: Code_Binaire := C;
 	begin
-		if C = null then 
+		if C = null then
         	return 0;
-        else 
+        else
 		 	while Tmp /= null loop
 	            L := L + 1;
 	            Tmp := Tmp.Suiv;
@@ -55,9 +55,9 @@ package body Code is
 	procedure Affiche(C : in Code_Binaire) is
 	Tmp: Code_Binaire := C;
     begin
-    	if C = null then 
+    	if C = null then
         	raise Code_Vide with "Code vide";
-        else 
+        else
 		 	while Tmp /= null loop
 	            Put(Tmp.Val,1);
 	            Tmp := Tmp.Suiv;
@@ -77,9 +77,9 @@ package body Code is
 	procedure Ajoute_Apres(B : in Bit; C : in out Code_Binaire) is
 	Tmp: Code_Binaire := C;
     begin
-		if C = null then 
+		if C = null then
         	C := new Code_Binaire_Interne'(B,null);
-        else 
+        else
             while Tmp.Suiv /= null loop
                 Tmp := Tmp.Suiv;
             end loop;
@@ -97,7 +97,7 @@ package body Code is
     		else
     			C := C1;
     		end if;
-        else 
+        else
             while Tmp.Suiv /= null loop
                 Tmp := Tmp.Suiv;
             end loop;
@@ -124,9 +124,9 @@ package body Code is
 	-- Retourne True s'il reste des bits dans l'iteration
 	function Has_Next(It : Iterateur_Code) return Boolean is
 	begin
-		if It = null then 
+		if It = null then
         	return False;
-        else 
+        else
             if It.Val = null then
             	return False;
         	else

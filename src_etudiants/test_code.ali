@@ -1,0 +1,85 @@
+V "GNAT Lib v5"
+M P W=b
+P ZX
+
+RN
+RV NO_IO
+RV NO_DEFAULT_INITIALIZATION
+RV SPARK_05
+
+U test_code%b		test_code.adb		b7c46998 NE OO SU
+W ada%s			ada.ads			ada.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W code%s		code.adb		code.ali
+
+D ada.ads		20070406091342 3ffc8e18 ada%s
+D a-except.ads		20140730140058 5250cb69 ada.exceptions%s
+D a-finali.ads		20140611123707 69f99942 ada.finalization%s
+D a-inteio.ads		20070406091342 f64b89a4 ada.integer_text_io%s
+D a-ioexce.ads		20140225151544 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20141120112812 119b8fb3 ada.streams%s
+D a-tags.ads		20140730140058 dc4d0634 ada.tags%s
+D a-textio.ads		20140717063745 386df5d4 ada.text_io%s
+D a-tiinio.ads		20140717063513 aa04e5d6 ada.text_io.integer_io%s
+D a-unccon.ads		20070406091342 f9eb8f06 ada.unchecked_conversion%s
+D code.ads		20161206144929 eb86974b code%s
+D interfac.ads		20141120112812 6033a23f interfaces%s
+D i-cstrea.ads		20140801100435 e53d8b8e interfaces.c_streams%s
+D system.ads		20141031112219 1d274481 system%s
+D s-crtl.ads		20141120112812 0ebbdb71 system.crtl%s
+D s-exctab.ads		20140225151139 54135002 system.exception_table%s
+D s-ficobl.ads		20140718105747 078245e4 system.file_control_block%s
+D s-finmas.ads		20140225151139 814daec4 system.finalization_masters%s
+D s-finroo.ads		20120426095924 4ff27390 system.finalization_root%s
+D s-parame.ads		20140801093848 7e2a0d7f system.parameters%s
+D s-pooglo.ads		20110804083314 542f33d0 system.pool_global%s
+D s-soflin.ads		20140801100131 aa763b52 system.soft_links%s
+D s-stache.ads		20140225151139 a37c21ec system.stack_checking%s
+D s-stalib.ads		20150220094550 fa0a3617 system.standard_library%s
+D s-stoele.ads		20140225151139 2dc34a04 system.storage_elements%s
+D s-stopoo.ads		20131010103753 b16154c2 system.storage_pools%s
+D s-traent.ads		20140730135025 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20140731130224 9d58a4c0 system.unsigned_types%s
+D s-wchcon.ads		20140718092328 1b7d22d2 system.wch_con%s
+D test_code.adb		20161206220434 926482a3 test_code%b
+X 1 ada.ads
+16K9*Ada 19e8 30|1r6 1r19 1r51 1r64
+X 4 a-inteio.ads
+18K13*Integer_Text_IO[9|46] 30|1w23 1r68
+X 8 a-textio.ads
+49K13*Text_IO 471e16 30|1w10 1r55
+166U14*New_Line 30|46s5 53s5 56s5 58s5 62s5 64s5 72s5
+242U14*Put 30|13s5 16s5 22s5 24s5 31s5 34s5 37s5 40s5 49s5 51s5 54s5 60s5
+. 66s5
+X 9 a-tiinio.ads
+66U14*Put 30|44s9[4|18] 52s5[4|18] 55s5[4|18] 61s5[4|18] 70s9[4|18]
+X 11 code.ads
+6K9*Code 88e9 30|1w40 1r85
+11I17*Bit{natural} 30|4r5
+12i9*ZERO{11I17} 30|4r12 10r18 11r18 12r18 18r18
+13i9*UN{11I17} 30|9r18 19r18 20r18 21r18 30r18 36r18
+15P14*Code_Binaire 30|3r9
+18V18*Cree_Code{15P14} 30|8s10 29s10
+21V18*Cree_Code{15P14} 30|15s8 59s10
+24U19*Libere_Code 30|48s5
+27V18*Longueur{natural} 30|52s9 55s9 61s9
+30U19*Affiche 30|14s5 17s5 23s5 25s5 32s5 35s5 38s5 50s5 57s5 63s5
+33U19*Ajoute_Avant 30|9s5 10s5 11s5 12s5 30s5 36s5
+36U19*Ajoute_Apres 30|18s5 19s5 20s5 21s5
+39U19*Ajoute_Apres 30|33s5
+59P14*Iterateur_Code 30|5r6
+62V18*Cree_Iterateur{59P14} 30|41s11 67s11
+68V18*Has_Next{boolean} 30|42s11 68s11
+72U19*Next 30|43s9 69s9
+X 30 test_code.adb
+2U11*Test_Code 2b11 75l5 75t14
+3p1 C{11|15P14} 8m5 9m21 9r21 10m23 10r23 11m23 11r23 12m23 12r23 14r13 15r18
+. 18m23 18r23 19m21 19r21 20m21 20r21 21m21 21r21 23r13 33r18 48m17 48r17
+. 52r18 59m5 61r18 67r26
+3p3 D{11|15P14} 29m5 30m21 30r21 32r13 33m20 33r20 35r13 36m21 36r21 38r13
+. 41r26 55r18 57r13 59r20 63r13
+3p5 E{11|15P14} 15m5 17r13 25r13 50r13
+4i1 B{11|11I17} 43m17 44r13 69m17 70r13
+5p1 It{11|59P14} 41m5 42r20 43m14 43r14 67m5 68r20 69m14 69r14
+

@@ -1,0 +1,111 @@
+V "GNAT Lib v5"
+M P W=b
+P ZX
+
+RN
+RV NO_ALLOCATORS
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_ENUMERATION_MAPS
+RV NO_EXCEPTIONS
+RV NO_IO
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_LOCAL_ALLOCATORS
+RV NO_NESTED_FINALIZATION
+RV NO_STANDARD_ALLOCATORS_AFTER_ELABORATION
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DEFAULT_INITIALIZATION
+RV SPARK_05
+
+U test_priorite%b	test_priorite.adb	0645da07 NE OO SU
+W ada%s			ada.ads			ada.ali
+W ada.exceptions%s	a-except.adb		a-except.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+Z ada.unchecked_deallocation%s
+W file_priorite%s	file_priorite.adb	file_priorite.ali
+W system%s		system.ads		system.ali
+W system.concat_2%s	s-conca2.adb		s-conca2.ali
+W system.exception_table%s  s-exctab.adb	s-exctab.ali
+W system.finalization_masters%s  s-finmas.adb	s-finmas.ali
+W system.img_bool%s	s-imgboo.adb		s-imgboo.ali
+W system.img_int%s	s-imgint.adb		s-imgint.ali
+W system.pool_global%s	s-pooglo.adb		s-pooglo.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.standard_library%s  s-stalib.adb	s-stalib.ali
+W system.storage_elements%s  s-stoele.adb	s-stoele.ali
+W system.storage_pools%s  s-stopoo.adb		s-stopoo.ali
+W system.storage_pools.subpools%s  s-stposu.adb	s-stposu.ali
+
+D ada.ads		20070406091342 3ffc8e18 ada%s
+D a-except.ads		20140730140058 5250cb69 ada.exceptions%s
+D a-finali.ads		20140611123707 69f99942 ada.finalization%s
+D a-inteio.ads		20070406091342 f64b89a4 ada.integer_text_io%s
+D a-ioexce.ads		20140225151544 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20141120112812 119b8fb3 ada.streams%s
+D a-tags.ads		20140730140058 dc4d0634 ada.tags%s
+D a-textio.ads		20140717063745 386df5d4 ada.text_io%s
+D a-tiinio.ads		20140717063513 aa04e5d6 ada.text_io.integer_io%s
+D a-unccon.ads		20070406091342 f9eb8f06 ada.unchecked_conversion%s
+D a-uncdea.ads		20070406091342 f15a5ed1 ada.unchecked_deallocation%s
+D file_priorite.ads	20161206130420 03c3da34 file_priorite%s
+D file_priorite.adb	20161206132526 62b65a37 file_priorite%b
+D interfac.ads		20141120112812 6033a23f interfaces%s
+D i-cstrea.ads		20140801100435 e53d8b8e interfaces.c_streams%s
+D system.ads		20141031112219 1d274481 system%s
+D s-conca2.ads		20140225151544 02a0d7d0 system.concat_2%s
+D s-crtl.ads		20141120112812 0ebbdb71 system.crtl%s
+D s-exctab.ads		20140225151139 54135002 system.exception_table%s
+D s-ficobl.ads		20140718105747 078245e4 system.file_control_block%s
+D s-finmas.ads		20140225151139 814daec4 system.finalization_masters%s
+D s-finroo.ads		20120426095924 4ff27390 system.finalization_root%s
+D s-imgboo.ads		20090409150019 f5d971eb system.img_bool%s
+D s-imgint.ads		20090409150019 02dbe0c2 system.img_int%s
+D s-memory.ads		20140225151139 597d6634 system.memory%s
+D s-parame.ads		20140801093848 7e2a0d7f system.parameters%s
+D s-pooglo.ads		20110804083314 542f33d0 system.pool_global%s
+D s-soflin.ads		20140801100131 aa763b52 system.soft_links%s
+D s-stache.ads		20140225151139 a37c21ec system.stack_checking%s
+D s-stalib.ads		20150220094550 fa0a3617 system.standard_library%s
+D s-stalib.adb		20140225151139 f2fe2716 system.standard_library%b
+D s-stoele.ads		20140225151139 2dc34a04 system.storage_elements%s
+D s-stopoo.ads		20131010103753 b16154c2 system.storage_pools%s
+D s-stposu.ads		20140718101241 97a6219c system.storage_pools.subpools%s
+D s-traent.ads		20140730135025 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20140731130224 9d58a4c0 system.unsigned_types%s
+D s-wchcon.ads		20140718092328 1b7d22d2 system.wch_con%s
+D test_priorite.adb	20161206131911 cba07c43 test_priorite%b
+X 1 ada.ads
+16K9*Ada 19e8 38|1r6 1r27 2r5 2r26
+X 4 a-inteio.ads
+18K13*Integer_Text_IO[9|46] 38|1w10 2r9
+X 8 a-textio.ads
+49K13*Text_IO 471e16 38|1w31 2r30
+263U14*Put_Line 38|23s3 25s3 27s3 29s3 31s3 33s3 35s3 37s3 39s3 41s3 43s3
+. 45s3 47s3
+X 12 file_priorite.ads
+14k9*File_Priorite 63e18 38|3w6 11r10
+16P14 File_Prio 38|14r13[10]
+23V18 Cree_File{16P14[38|10]} 38|22s14[10]
+30V18 Est_Vide{boolean} 38|23s26[10]
+33V18 Est_Pleine{boolean} 38|35s26[10]
+39U19 Insere 38|24s3[10] 26s3[10] 28s3[10] 30s3[10] 32s3[10]
+46U19 Supprime 38|36s3[10] 38s3[10] 40s3[10] 42s3[10] 44s3[10] 46s3[10]
+X 16 system.ads
+67M9*Address
+X 25 s-memory.ads
+53V13*Alloc{16|67M9} 103i<c,__gnat_malloc>22
+68U14*Free 104i<c,__gnat_free>22
+76V13*Realloc{16|67M9} 105i<c,__gnat_realloc>22
+X 31 s-stalib.adb
+93U14 Break_Start 94i<c,__gnat_break_start>22
+X 38 test_priorite.adb
+6U11*Test_Priorite 6b11 48l5 48t18
+10K17 File_Priorite_Character[12|14] 12r13
+14p9 F{12|16P14[10]} 22m9 23r35 24m10 24r10 26m10 26r10 28m10 28r10 30m10
+. 30r10 32m10 32r10 35r37 36r12 38r12 40r12 42r12 44r12 46r12
+16e1 c{character} 36m14 37r12 38m14 39r12 40m14 41r12 42m14 43r12 44m14 45r12
+. 46m14 47r12
+17i1 d{integer} 36m16 37r30 38m16 39r30 40m16 41r30 42m16 43r30 44m16 45r30
+. 46m16 47r30
+

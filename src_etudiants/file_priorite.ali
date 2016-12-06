@@ -1,0 +1,113 @@
+V "GNAT Lib v5"
+P ZX
+
+RN
+RV NO_ALLOCATORS
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_EXCEPTIONS
+RV NO_IO
+RV NO_LOCAL_ALLOCATORS
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_UNCHECKED_DEALLOCATION
+RV NO_DEFAULT_INITIALIZATION
+RV SPARK_05
+
+U file_priorite%b	file_priorite.adb	5e09a2a2 NE OO PK GE
+W ada%s			ada.ads			ada.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W ada.unchecked_deallocation%s
+
+U file_priorite%s	file_priorite.ads	03c3da34 BN EE NE OO PK GE
+
+D ada.ads		20070406091342 3ffc8e18 ada%s
+D a-except.ads		20140730140058 5250cb69 ada.exceptions%s
+D a-inteio.ads		20070406091342 f64b89a4 ada.integer_text_io%s
+D a-ioexce.ads		20140225151544 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20141120112812 119b8fb3 ada.streams%s
+D a-tags.ads		20140730140058 dc4d0634 ada.tags%s
+D a-textio.ads		20140717063745 386df5d4 ada.text_io%s
+D a-tiinio.ads		20140717063513 aa04e5d6 ada.text_io.integer_io%s
+D a-unccon.ads		20070406091342 f9eb8f06 ada.unchecked_conversion%s
+D a-uncdea.ads		20070406091342 f15a5ed1 ada.unchecked_deallocation%s
+D file_priorite.ads	20161206130420 03c3da34 file_priorite%s
+D file_priorite.adb	20161206132526 62b65a37 file_priorite%b
+D interfac.ads		20141120112812 6033a23f interfaces%s
+D i-cstrea.ads		20140801100435 e53d8b8e interfaces.c_streams%s
+D system.ads		20141031112219 1d274481 system%s
+D s-crtl.ads		20141120112812 0ebbdb71 system.crtl%s
+D s-exctab.ads		20140225151139 54135002 system.exception_table%s
+D s-ficobl.ads		20140718105747 078245e4 system.file_control_block%s
+D s-parame.ads		20140801093848 7e2a0d7f system.parameters%s
+D s-soflin.ads		20140801100131 aa763b52 system.soft_links%s
+D s-stache.ads		20140225151139 a37c21ec system.stack_checking%s
+D s-stalib.ads		20150220094550 fa0a3617 system.standard_library%s
+D s-stoele.ads		20140225151139 2dc34a04 system.storage_elements%s
+D s-traent.ads		20140730135025 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20140731130224 9d58a4c0 system.unsigned_types%s
+D s-wchcon.ads		20140718092328 1b7d22d2 system.wch_con%s
+X 1 ada.ads
+16K9*Ada 19e8 12|1r6 1r27 2r5 2r26 3r6 13r23
+X 3 a-inteio.ads
+18K13*Integer_Text_IO[8|46] 12|1w10 2r9
+X 7 a-textio.ads
+49K13*Text_IO 471e16 12|1w31 2r30
+X 10 a-uncdea.ads
+20u15*Unchecked_Deallocation 12|3w10 13r27
+X 11 file_priorite.ads
+6+14 Donnee 39r55 46r53 54r52 12|8r8 65r47 114r44 141r44
+8+14 Priorite 9r35 10r35 39r70 46r68 54r67 12|9r8 65r62 114r59 141r59
+9V24 "="{boolean} 9>28 9>31
+9*28 A{8+14}
+9*31 B{8+14}
+10V24 "<"{boolean} 10>28 10>31 12|82s18 88s22
+10*28 A{8+14}
+10*31 B{8+14}
+14k9*File_Priorite 6z14 8z14 9z24 10z24 59E14 63l5 63e18 12|4b14 151l5 151t18
+16P14*File_Prio 22r31 23r55 27r42 30r33 33r35 39r37 46r35 54r34 60c14 12|10r8
+. 13r64 19r47 20r5 30r34 31r5 40r25 48r27 60r23 65r29 66r7 67r12 114r26 115r7
+. 141r26
+18X9*File_Prio_Pleine 12|99r11
+18X27*File_Prio_Vide 12|129r11 147r11
+22V18*Get_Taille{integer} 22>29 12|60b10 63l5 63t15
+22p29 F{16P14} 12|60b21 62r10
+23V18*Cree_File{16P14} 23>28 12|19b10 25l5 25t14
+23i28 Capacite{positive} 12|19b20 22r15
+27U19*Libere_File 27=31 12|30b11 38l5 38t16
+27p31 F{16P14} 12|30b23 31r16 33r9 34r8 35m5 35r8
+30V18*Est_Vide{boolean} 30>27 12|40b10 45l5 45t13 76s8 117s10 143s10
+30p27 F{16P14} 12|40b19 42r6 42r21
+33V18*Est_Pleine{boolean} 33>29 12|48b10 53l5 53t15 70s10
+33p29 F{16P14} 12|48b21 50r6 50r15
+39U19*Insere 39=26 39>48 39>63 12|65b11 101l5 101t11
+39p26 F{16P14} 12|65b18 67r23 70r21 72r19 73r17 76r17 77r7 82r19 83r19 84m9
+. 86r11 86r21
+39*48 D{6+14} 12|65b40 74r15
+39*63 P{8+14} 12|65b55 75r15
+46U19*Supprime 46>28 46<46 46<61 12|114b11 131l5 131t13
+46p28 F{16P14} 12|114b20 117r19 118r8 119r8 120r8 121r7 121r15 122r7 122r15
+. 123r12 124r7 124r15 127r5 127r15
+46*46 D{6+14} 12|114b37 118m5
+46*61 P{8+14} 12|114b52 119m5
+54U19*Prochain 54>28 54<45 54<60 12|141b11 149l5 149t13
+54p28 F{16P14} 12|141b20 143r19 144r8 145r8
+54*45 D{6+14} 12|141b37 144m5
+54*60 P{8+14} 12|141b52 145m5
+59R14 File_Interne 60r34 12|5c6 11e11 13r51 20r20 66r22
+X 12 file_priorite.adb
+6i3 Capacite{positive} 22m5 50r17 72m9 72r21
+7i3 Taille{integer} 23m5 42r23 50r8 62r12 73m9 73r19 86m13 86r23 120r10 127m7
+. 127r17
+8*3 Data{11|6+14} 74m9 118r10 121m9 121r22 144r10
+9*3 Prio{11|8+14} 75m9 82r14 82r21 88r18 88r36 119r10 122m9 122r22 145r10
+10p3 suiv{11|16P14} 35r10 83m13 87r22 88r30 88r31 91r32 94m13 94r27 95m19
+. 121r16 121r17 122r16 122r17 123r14 124m9 124r16 124r17 124r22
+13U11 Free[10|20] 36s5 78s7 125s7
+20p3 F{11|16P14} 22r3 23r3 24r10
+31p3 p{11|16P14} 34m5 36m10 36r10
+66p3 add{11|16P14} 72r5 73r5 74r5 75r5 77r14 78m12 78r12 82r10 83r9 84r12
+. 88r14 94r9 95r25
+67p3 courant{11|16P14} 87r14 88r23 91m15 91r24 94r19 95r11
+68i3 i{integer} 87r37 89m13
+115p3 act{11|16P14} 123m7 125m12 125r12
+

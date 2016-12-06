@@ -1,6 +1,6 @@
 with Ada.Text_IO, Ada.Integer_Text_IO, Code; use  Ada.Text_IO, Ada.Integer_Text_IO, Code;
 procedure Test_Code is
-C,D : Code_Binaire;
+C,D,E : Code_Binaire;
 B : Bit := ZERO;
 It : Iterateur_Code;
 begin
@@ -12,12 +12,19 @@ begin
     Ajoute_Avant(ZERO,C);
     Put("C: ");
     Affiche(C);
+    E:=Cree_Code(C);
+    Put("E: ");
+    Affiche(E);
     Ajoute_Apres(ZERO,C);
     Ajoute_Apres(UN,C);
     Ajoute_Apres(UN,C);
     Ajoute_Apres(UN,C);
     Put("C: ");
     Affiche(C);
+    Put("E: ");
+    Affiche(E);
+
+
 
     D := Cree_Code;
     Ajoute_Avant(UN,D);
@@ -39,6 +46,8 @@ begin
     New_Line;
 
     Libere_Code(C);
+    Put("E: ");
+    Affiche(E);
     Put("Longueur C: ");
     Put(Longueur(C));
     New_Line;
