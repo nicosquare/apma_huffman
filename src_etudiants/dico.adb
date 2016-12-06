@@ -107,7 +107,7 @@ package body Dico is
 				Tmp := Tmp.Suiv;
 	        end loop;
 		end if;
-        Libere_Dico(Tmp);
+        --Libere_Dico(Tmp);
         return EP;
 	end Est_Present;
 
@@ -132,16 +132,19 @@ package body Dico is
 	-- Retourne les infos associees a un caractere
 	--  -> leve l'exception Caractere_Absent si C n'est pas dans D
 	function Get_Infos(C : Character; D : Dico_Caracteres) return Info_Caractere is
+    courant:Dico_Caracteres:=D;
 	begin
 		if not Est_Present(C,D) then
 			raise Caractere_Absent with "Caractere n'est pas present";
 		else
-			if D.Char = C then
-				return D.Infos;
-			else
-				return Get_Infos(C,D.Suiv);
-			end if;
-		end if;
+      while(courant/=NULL) loop
+			     if courant.Char = C then
+				         return courant.Infos;
+			            end if;
+                  courant:=courant.suiv;
+                end loop;
+                return courant.Infos;
+		            end if;
 	end Get_Infos;
 
 

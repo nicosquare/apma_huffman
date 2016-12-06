@@ -68,19 +68,20 @@ begin
 	C := 'b';
 	Put(C);
 	Put(" => code => ");
-	Affiche(Get_Code('h',D1));
+	Affiche(Get_Code(C,D1));
 
 	Affiche(D1);
-
-	-- Get_Infos ne marche pas
+	Affiche(Get_Code('c',D1));
+	 --Get_Infos ne marche pas
 	C := 'b';
-	--I := Get_Infos(C,D1);
+
 	Put(C);
 	Put(" => Info => ");
-	--Put(" Occ: ");
-	--Put(I.Occ);
-	--Put(" Code: ");
-	--Affiche(I.Code);
+	I := Get_Infos(C,D1);
+	Put(" Occ: ");
+	Put(I.Occ);
+	Put(" Code: ");
+	Affiche(I.Code);
 
 	Put("Caracteres differentes: ");
 	Put(Nb_Caracteres_Differents(D1));
