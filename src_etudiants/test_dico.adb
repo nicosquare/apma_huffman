@@ -37,7 +37,7 @@ begin
     Ajoute_Avant(UN,C4);
     Put("C4: ");
     Affiche(C4);
-    
+
 
 	D1 := Cree_Dico;
 	C := 'a';
@@ -53,7 +53,7 @@ begin
 	C := 'D';
 	I := Info_Caractere'(5,C4);
 	Set_Infos(C,I,D1);
-	
+
 	Affiche(D1);
 
 	C := 'X';
@@ -64,11 +64,11 @@ begin
 		Put_Line(" Pas Present");
 	end if;
 
-	-- Get_Code ne marche pas
+	--Get_Code ne marche pas
 	C := 'b';
 	Put(C);
 	Put(" => code => ");
-	--Affiche(Get_Code(C,D1));
+	Affiche(Get_Code('h',D1));
 
 	Affiche(D1);
 
@@ -88,7 +88,7 @@ begin
 
 	Put("Caracteres total: ");
 	Put(Nb_Total_Caracteres(D1));
-	New_Line;	
+	New_Line;
 
 
 

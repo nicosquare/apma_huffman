@@ -1,5 +1,5 @@
 with Ada.Integer_Text_IO, Ada.Text_IO, Code; use Ada.Integer_Text_IO, Ada.Text_IO, Code; with Ada.Unchecked_Deallocation;
-package body Dico is 
+package body Dico is
 
 	-- Definition Code_Binaire_Interne
     type Dico_Caracteres_Interne is record
@@ -10,8 +10,8 @@ package body Dico is
 
     -- Procedures pour vider allocation de memoire
 	procedure Libere is new Ada.Unchecked_Deallocation (Dico_Caracteres_Interne, Dico_Caracteres);
-	
-	-- Cree un dictionnaire D, initialement vide	
+
+	-- Cree un dictionnaire D, initialement vide
 	function Cree_Dico return Dico_Caracteres is
 	begin
 		return null;
@@ -23,7 +23,7 @@ package body Dico is
 	begin
 		Libere(D);
 	end Libere_Dico;
-	
+
 	-- Affiche pour chaque caractere: son nombre d'occurences et son code
 	-- (s'il a ete genere)
 	procedure Affiche(D : in Dico_Caracteres) is
@@ -44,8 +44,8 @@ package body Dico is
 		end if;
         Libere_Dico(Tmp);
 	end Affiche;
-	
-	
+
+
 -- Ajouts d'informations dans le dictionnaire
 
 	-- Associe un code a un caractere
@@ -114,15 +114,18 @@ package body Dico is
 	-- Retourne le code binaire d'un caractere
 	--  -> leve l'exception Caractere_Absent si C n'est pas dans D
 	function Get_Code(C : Character; D : Dico_Caracteres) return Code_Binaire is
+    courant : Dico_Caracteres:=D;
 	begin
 		if not Est_Present(C,D) then
 			raise Caractere_Absent with "Caractere n'est pas present";
 		else
-			if D.Char = C then
-				return D.Infos.Code;
-			else
-				return Get_Code(C,D.Suiv);
+      while(courant/=NULL) loop
+			if courant.Char = C then
+				return courant.Infos.Code;
 			end if;
+      courant:=courant.suiv;
+    end loop;
+    return courant.Infos.Code;
 		end if;
 	end Get_Code;
 
@@ -149,9 +152,9 @@ package body Dico is
 	L: Integer := 0;
     Tmp: Dico_Caracteres := D;
 	begin
-		if D = null then 
+		if D = null then
         	return 0;
-        else 
+        else
 		 	while Tmp /= null loop
 	            L := L + 1;
 	            Tmp := Tmp.Suiv;
@@ -167,9 +170,9 @@ package body Dico is
 	L: Integer := 0;
     Tmp: Dico_Caracteres := D;
 	begin
-		if D = null then 
+		if D = null then
         	return 0;
-        else 
+        else
 		 	while Tmp /= null loop
 	            L := L + Tmp.Infos.Occ;
 	            Tmp := Tmp.Suiv;
