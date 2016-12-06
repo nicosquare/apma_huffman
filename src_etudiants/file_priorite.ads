@@ -1,28 +1,31 @@
--- paquetage generique de file de priorite 
+-- paquetage generique de file de priorite
 -- Les priorites sont munies d'un ordre total "Est_Prioritaire"
-
+--package File_Priorite is
 generic
 	-- le type representant une donnee de la file
 	type Donnee is private;
 	-- le type representant la priorite d'une donnee
 	type Priorite is private;
+	with function "=" (A, B : Priorite) return Boolean;
+	with function "<" (A, B : Priorite) return Boolean;
 	-- et l'operateur d'ordre sur ce type
-	with function Est_Prioritaire(P1, P2: Priorite) return Boolean;
+--	with function Est_Prioritaire(P1, P2: Priorite) return Boolean;
 
 package File_Priorite is
-	
+
 	type File_Prio is private;
 
 	File_Prio_Pleine, File_Prio_Vide: exception ;
 
-	-- Cree et retourne une nouvelle file, initialement vide 
+	-- Cree et retourne une nouvelle file, initialement vide
 	-- et de capacite maximale Capacite
+	function Get_Taille(F:File_Prio) return Integer;
 	function Cree_File(Capacite: Positive) return File_Prio;
 
 	-- Libere une file de priorite.
 	-- garantit: en sortie toute la memoire a ete libere, et F = null.
 	procedure Libere_File(F : in out File_Prio);
-	
+
 	-- retourne True si la file est vide, False sinon
 	function Est_Vide(F: in File_Prio) return Boolean;
 
@@ -33,14 +36,14 @@ package File_Priorite is
 	--   insere la donnee D de priorite P dans la file F
 	-- sinon
 	--   leve l'exception File_Pleine
-	procedure Insere(F : in File_Prio; D : in Donnee; P : in Priorite);
+	procedure Insere(F : in out File_Prio; D : in Donnee; P : in Priorite);
 
 	-- si not Est_Vide(F)
 	--   supprime la donnee la plus prioritaire de F.
 	--   sortie: D est la donnee, P sa priorite
 	-- sinon
 	--   leve l'exception File_Vide
-	procedure Supprime(F: in File_Prio; D: out Donnee; P: out Priorite);
+	procedure Supprime(F: in  File_Prio; D: out Donnee; P: out Priorite);
 
 	-- si not Est_Vide(F)
 	--   retourne la donnee la plus prioritaire de F (sans la
@@ -49,12 +52,12 @@ package File_Priorite is
 	-- sinon
 	--   leve l'exception File_Vide
 	procedure Prochain(F: in File_Prio; D: out Donnee; P: out Priorite);
-		
+
 private
 	-- Le type File_Interne doit etre defini dans le corps du package
 	-- (file_priorite.adb)
 	type File_Interne;
 	type File_Prio is access File_Interne;
-	
-end File_Priorite;
 
+
+end File_Priorite;
