@@ -1,7 +1,5 @@
-with Ada.Text_Io; use Ada.Text_Io;
-with Ada.Command_Line; use Ada.Command_Line;
-
-
+with Ada.Text_IO, Ada.Integer_Text_Io, Code , huffman, dico, Ada.Streams.Stream_IO, Ada.IO_Exceptions, Ada.Command_line;
+use Ada.Text_IO, Ada.Integer_Text_Io, Code , huffman, dico, Ada.Streams.Stream_IO, Ada.Command_line;
 procedure tp_huffman is
 
 ------------------------------------------------------------------------------
@@ -9,8 +7,13 @@ procedure tp_huffman is
 ------------------------------------------------------------------------------
 
 	procedure Compresse(Nom_Fichier_In, Nom_Fichier_Out : in String) is
+	A : Arbre_Huffman;
 	begin
-		-- A COMPLETER!
+		
+		A := Cree_Huffman(Nom_Fichier_In);
+		Affiche(A);
+
+
 		return;
 	end Compresse;
 
