@@ -3,7 +3,7 @@
 -- D'autres operations peuvent etre ajoutees si necessaire, et 
 -- toutes ne vous seront pas forcement utiles...
 
-package code is
+package Code is
 
 	Code_Vide, Code_Trop_Court : exception;
 
@@ -69,7 +69,7 @@ package code is
 
 	-- Retourne le prochain bit et avance dans l'iteration
 	-- Leve l'exception Code_Entierement_Parcouru si Has_Next(It) = False
-	function Next(It : Iterateur_Code) return Bit;
+	procedure Next(It : in out Iterateur_Code; B : out Bit);
 
 
 private
@@ -79,9 +79,18 @@ private
 
 	type Code_Binaire is access Code_Binaire_Interne;
 
+    type Code_Binaire_Interne is record
+        Val: Bit;
+        Suiv: Code_Binaire;
+    end record;
+
 	-- type prive: a definir dans le body du package, code.adb
 	type Iterateur_Code_Interne;
 
 	type Iterateur_Code is access Iterateur_Code_Interne;
 
-end code;
+    type Iterateur_Code_Interne is record
+        Val: Code_Binaire;
+    end record;
+
+end Code;

@@ -1,0 +1,66 @@
+with Ada.Integer_Text_IO,Ada.Text_IO; use Ada.Integer_Text_IO,Ada.Text_IO; with Code; use Code;
+procedure Test_Code is
+C,D : Code_Binaire;
+B : Bit := ZERO;
+It : Iterateur_Code;
+begin
+
+    C := Cree_Code;
+    Ajoute_Avant(UN,C);
+    Ajoute_Avant(ZERO,C);
+    Ajoute_Avant(ZERO,C);
+    Ajoute_Avant(ZERO,C);
+    Put("C: ");
+    Affiche(C);
+    Ajoute_Apres(ZERO,C);
+    Ajoute_Apres(UN,C);
+    Ajoute_Apres(UN,C);
+    Ajoute_Apres(UN,C);
+    Put("C: ");
+    Affiche(C);
+
+    D := Cree_Code;
+    Ajoute_Avant(UN,D);
+    Put("D: ");
+    Affiche(D);
+    Ajoute_Apres(C,D);
+    Put("D: ");
+    Affiche(D);
+    Ajoute_Avant(UN,D);
+    Put("D: ");
+    Affiche(D);
+
+    Put("D: ");
+    It := Cree_Iterateur(D);
+    while Has_Next(It) loop
+        Next(It,B);
+        Put(B,2);
+    end loop;
+    New_Line;
+
+    Libere_Code(C);
+    Put("Longueur C: ");
+    Put(Longueur(C));
+    New_Line;
+    Put("Longueur D: ");
+    Put(Longueur(D));
+    New_Line;
+    Affiche(D);
+    New_Line;
+    C := Cree_Code(D);
+    Put("Longueur C: ");
+    Put(Longueur(C));
+    New_Line;
+    Affiche(D);
+    New_Line;
+
+    Put("C: ");
+    It := Cree_Iterateur(C);
+    while Has_Next(It) loop
+        Next(It,B);
+        Put(B,2);
+    end loop;
+    New_Line;
+
+
+end Test_Code;
