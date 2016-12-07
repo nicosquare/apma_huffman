@@ -1,6 +1,6 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
---with dico; use dico;
---with Code; use Code;
+with dico; use dico;
+with Code; use Code;
 
 -- paquetage representant un arbre de Huffman de caracteres
 
@@ -51,7 +51,9 @@ procedure Fusion_Arbre(moins_prio1: in out Arbre_Huffman;moins_prio2: in Arbre_H
 	-- Retourne un dictionnaire contenant les caracteres presents
 	-- dans l'arbre et leur code binaire (evite les parcours multiples)
 	-- de l'arbre
-	function Genere_Dictionnaire(H : in Arbre_Huffman) return Dico_Caracteres;
+
+	procedure Genere_Dic_Arbre(A: in Arbre; D:in out Dico_Caracteres;C: in out Code_Binaire) ;
+	function Genere_Dictionnaire(H :  Arbre_Huffman) return Dico_Caracteres;
 
 
 

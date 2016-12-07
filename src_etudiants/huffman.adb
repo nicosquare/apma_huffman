@@ -2,7 +2,6 @@ with Ada.Integer_Text_Io; use Ada.Integer_Text_Io;
 with Ada.Text_Io; use Ada.Text_Io;
 with Ada.Unchecked_Deallocation;
 with file_priorite;
-with dico;
 -- Exemple de lecture/ecriture de donnes dans un fichier,
 -- a l'aide de flux Ada.
 
@@ -24,7 +23,7 @@ package body Huffman is
 procedure Free is new Ada.Unchecked_Deallocation (Noeud,Arbre);
 
 package File_Priorite_Arbre_Huffman is
-   new File_Priorite(Arbre_Huffman,Integer,"=",">");
+   new File_Priorite(Arbre_Huffman,Integer,"=","<");
 use File_Priorite_Arbre_Huffman;
 
 type Octet is new Integer range 0 .. 255;
@@ -223,13 +222,41 @@ begin
   end Lit_Huffman;
 
 
+procedure Genere_Dic_Arbre(A: in Arbre; D:in out Dico_Caracteres;C:in out Code_Binaire) is
+  C1:Code_Binaire:=Cree_Code(C);
+begin
+  if A.filsdroit/=NULL then
+    Ajoute_Apres(ZERO,C);
+    Affiche(C);
+    Genere_Dic_Arbre(A.filsdroit,D,C);
+  end if;
+  if A.filsgauche/=NULL then
 
+    Ajoute_Apres(UN,C1);
+    Affiche(C1);
+    Genere_Dic_Arbre(A.filsgauche,D,C1);
+  end if;
+  if A.filsgauche=NULL and A.filsdroit=NULL then
+
+    Set_Code(A.valeur,C,D);
+    Libere_Code(C1);
+  end if ;
+end Genere_Dic_Arbre;
 
 -- Retourne un dictionnaire contenant les caracteres presents
 -- dans l'arbre et leur code binaire (evite les parcours multiples)
 -- de l'arbre
 function Genere_Dictionnaire(H : in Arbre_Huffman) return Dico_Caracteres is
+  D:Dico_Caracteres:=Cree_Dico;
+  C: Code_Binaire:=Cree_Code;
 
+
+begin
+  Put("a");
+Genere_Dic_Arbre(H.A,D,C);
+return D;
+
+end Genere_Dictionnaire;
 
 
 

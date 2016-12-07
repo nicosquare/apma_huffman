@@ -2,6 +2,7 @@ with Ada.Integer_Text_IO, Ada.Text_IO;
 use Ada.Integer_Text_IO, Ada.Text_IO;
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 with huffman; use huffman;
+with dico; use dico;
 
 
 
@@ -10,10 +11,13 @@ procedure Test_Huffman is
   Fichier : Ada.Streams.Stream_IO.File_Type;
   Flux : Ada.Streams.Stream_IO.Stream_Access;
   i:Integer;
+  D: Dico_Caracteres;
 begin
 A:=Cree_Huffman("mini.txt");
 Put_Line("premier Arbre");
 Affiche(A);
+D:=Genere_Dictionnaire(A);
+Affiche(D);
 
 Create(Fichier, Out_File,"prout.txt");
 Flux := Stream(Fichier);
@@ -29,4 +33,6 @@ A:=Lit_Huffman(Flux);
 
 Close(Fichier);
 Affiche(A);
+D:=Genere_Dictionnaire(A);
+Affiche(D);
 end Test_Huffman;

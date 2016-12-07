@@ -26,6 +26,9 @@ package body Code is
 	Tmp : Code_Binaire := new Code_Binaire_Interne;
   courant1,courant2 : Code_Binaire;
 	begin
+    if C=Null then
+      return Null;
+    end if;
     courant1:=C;
     courant2:=Tmp;
     tmp.all:=C.all;
