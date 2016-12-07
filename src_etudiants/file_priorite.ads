@@ -4,9 +4,10 @@
 generic
 	-- le type representant une donnee de la file
 	type Donnee is private;
+
 	-- le type representant la priorite d'une donnee
 	type Priorite is private;
-	with function "=" (A, B : Priorite) return Boolean;
+	with function "=" (A, B : Priorite) return Boolean; -- fonctions nécessaires à la comparaison de la priorite des élements
 	with function "<" (A, B : Priorite) return Boolean;
 	-- et l'operateur d'ordre sur ce type
 --	with function Est_Prioritaire(P1, P2: Priorite) return Boolean;
