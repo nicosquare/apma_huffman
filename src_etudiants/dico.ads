@@ -50,6 +50,10 @@ package Dico is
 	function Get_Code(C : Character; D : Dico_Caracteres)
 	         return Code_Binaire;
 
+
+	-- Retourne le caractere d'un code binaire
+	function Get_Char(D: in Dico_Caracteres; Code : in Code_Binaire) return Character;
+
 	-- Retourne les infos associees a un caractere
 	--  -> leve l'exception Caractere_Absent si C n'est pas dans D
 	function Get_Infos(C : Character; D : Dico_Caracteres)
@@ -64,7 +68,6 @@ package Dico is
 	-- Retourne le nombre total de caracteres
 	--  =  somme des nombre d'occurences de tous les caracteres de D
 	function Nb_Total_Caracteres(D : in Dico_Caracteres) return Natural;
-
 
 private 
 	-- Le type Dico_Caracteres_Interne doit etre defini dans le corps
