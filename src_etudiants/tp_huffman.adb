@@ -20,7 +20,7 @@ procedure tp_huffman is
 	H : Arbre_Huffman;
 	D : Dico_Caracteres;
     C : Character;
-    Cod : Code_Binaire;
+    Cod : Code_Binaire := Cree_Code;
     I : Integer;
 	begin
 
@@ -40,11 +40,14 @@ procedure tp_huffman is
             -- Lire caractère par caractêre
             Character'Read(Flux_In,C);
             -- Get code selon le Dico
-            Cod := Get_Code(C,D);
+            Ajoute_Apres(Get_Code(C,D),Cod);
             -- Transformer le code à Octet et l'écrire
             Ecrire_Binaire(Cod,Flux_Out);
         end loop;
-
+        for j in Integer range 1..7 loop
+            Ajoute_Apres(ZERO,Cod);
+        end loop;
+        Ecrire_Binaire(Cod,Flux_Out);
         Close(Fichier_In);
         Close(Fichier_Out);
 
