@@ -29,7 +29,7 @@ D a-tiinio.ads		20140717063513 aa04e5d6 ada.text_io.integer_io%s
 D a-unccon.ads		20070406091342 f9eb8f06 ada.unchecked_conversion%s
 D code.ads		20161206144929 eb86974b code%s
 D dico.ads		20161206215247 a5382a5f dico%s
-D huffman.ads		20161207010743 0dc17887 huffman%s
+D huffman.ads		20161207045212 0dc17887 huffman%s
 D interfac.ads		20141120112812 6033a23f interfaces%s
 D i-cstrea.ads		20140801100435 e53d8b8e interfaces.c_streams%s
 D system.ads		20141031112219 1d274481 system%s
@@ -73,16 +73,16 @@ X 13 dico.ads
 14P14*Dico_Caracteres 33|14r6
 27U19*Affiche 33|20s1 37s1
 X 14 huffman.ads
-7K9*Huffman 82e12 33|4w6 4r19
-11R14*Arbre_Huffman 17e19 33|10r5
-25U19*Affiche 33|18s1 35s1
-34V18*Cree_Huffman{11R14} 33|16s4
-41V18*Ecrit_Huffman{positive} 33|24s4
-47V18*Lit_Huffman{11R14} 33|31s4
-56V18*Genere_Dictionnaire{13|14P14} 33|19s4 36s4
+6K9*Huffman 81e12 33|4w6 4r19
+10R14*Arbre_Huffman 16e19 33|10r5
+24U19*Affiche 33|18s1 35s1
+33V18*Cree_Huffman{10R14} 33|16s4
+40V18*Ecrit_Huffman{positive} 33|24s4
+46V18*Lit_Huffman{10R14} 33|31s4
+55V18*Genere_Dictionnaire{13|14P14} 33|19s4 36s4
 X 33 test_huffman.adb
 9U11*Test_Huffman 9b11 38l5 38t17
-10r3 A{14|11R14} 16m1 18r9 19r24 24r18 31m1 35r9 36r24
+10r3 A{14|10R14} 16m1 18r9 19r24 24r18 31m1 35r9 36r24
 11p3 Fichier{7|44P9} 22m8 22r8 23r16 26m7 26r7 28m6 28r6 29r16 34m7 34r7
 12p3 Flux{7|42P9} 23m1 24r20 29m1 31r16
 13i3 i{integer} 24m1

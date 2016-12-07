@@ -101,16 +101,15 @@ function Cree_Huffman(Nom_Fichier : in String) return Arbre_Huffman is
 Fichier : Ada.Streams.Stream_IO.File_Type;
 Flux : Ada.Streams.Stream_IO.Stream_Access;
 C : Character;
-T : array(0..255) of cellule; -- ce tableau sert à faire un premier enregistrement des characters présents dans le fichier
-I : Integer;
-F:File_Prio:=Cree_File(255);
+T : array(0..256) of cellule; -- ce tableau sert à faire un premier enregistrement des characters présents dans le fichier
+F:File_Prio:=Cree_File(256);
 Huffman: Arbre_Huffman;
 moins_prio1 : Arbre_Huffman;
 moins_prio2 : Arbre_Huffman;
 prio1 : Integer;
 prio2: Integer;
 begin
-for j in 0..255 loop
+for j in 0..256 loop
   T(j).Prio:=0;
 end loop;
 Open(Fichier, In_File, Nom_Fichier);
@@ -126,29 +125,27 @@ Put("Lecture des donnees: ");
 while not End_Of_File(Fichier) loop -- on lit le fichier
   C := Character'Input(Flux);
   Put(", "); Put(C);
-  i:=0;
-  while(C/=T(i).Data and T(i).Prio/=0 and i<255) loop -- on enregistre les données et priorités dans le tableau
-    i:=i+1;
+  T(Character'Pos(C)).Prio:=T(Character'Pos(C)).Prio+1;
+  T(Character'Pos(C)).Data:=C;
 
 
   end loop;
-  T(i).Data:=C;
-  T(i).Prio:=T(i).Prio+1;
 
-end loop;
+
 
 Close(Fichier);
 Put_Line("fermeture du fichier");
 
-i:=0;
-  huffman.A:=creer_arbre(T(i).Data,T(i).Prio);
-  while(T(i).Prio>0 and i<255) loop -- on crée la file_priorite à partir du tableau nous nous sommes rendus compte trop tard
-                                              --que l'utilisation du type tableau dès le départ s'avairait plus malin dans ce cas
-  huffman.Nb_Total_Caracteres:=T(i).Prio;
-  Insere(F,huffman,T(i).Prio);
-  i:=i+1;
+
+  for j in 0..256 loop -- on crée la file_priorite à partir du tableau nous nous sommes rendus compte trop tard
+  if T(j).Prio>0 then --que l'utilisation du type tableau dès le départ s'avairait plus malin dans ce cas
+  huffman.A:=creer_arbre(T(j).Data,T(j).Prio);
+
+  huffman.Nb_Total_Caracteres:=T(j).Prio;
+  Insere(F,huffman,T(j).Prio);
+end if;
 end loop;
-while(Get_Taille(F)>1)    -- on crée l'abre en supprimant sortants les deux arbres les plus prioritaires et en inserant l'arbre fusionné.
+while(Get_Taille(F)>1) loop   -- on crée l'abre en supprimant sortants les deux arbres les plus prioritaires et en inserant l'arbre fusionné.
   Supprime(F,moins_prio1,prio1);
   Supprime(F,moins_prio2,prio2);
   Fusion_Arbre(moins_prio1,moins_prio2);
@@ -161,7 +158,7 @@ end Cree_Huffman;
 -- Le format de stockage est celui decrit dans le sujet
 -- Retourne le nb d'octets ecrits dans le flux (pour les stats)
 
-procedure Ecrit_Arbre(A:in Arbre;F:File_Prio) is    -- cette procédure recursive permet de réecrire l'arbre dans un programme.
+procedure Ecrit_Arbre(A:in Arbre;Flux : Ada.Streams.Stream_IO.Stream_Access) is    -- cette procédure recursive permet de réecrire l'arbre dans un programme.
 begin
   if A.filsgauche/=NULL then
     Ecrit_Arbre(A.filsgauche,Flux);
@@ -194,25 +191,33 @@ function Ecrit_Huffman(H : in Arbre_Huffman;Flux : Ada.Streams.Stream_IO.Stream_
 function Lit_Huffman(Flux : Ada.Streams.Stream_IO.Stream_Access)
   return Arbre_Huffman is
   Nb_caractere:Natural;
+  T : array(0..256) of cellule;
   i:Natural:=0;
-  F:File_Prio:=Cree_File(255);
+  F:File_Prio:=Cree_File(256);
   C:Character;
   Prio:Integer;
   huffman,moins_prio1,moins_prio2 : Arbre_Huffman;
   prio1,prio2:Integer;
 begin
+  for j in 0..256 loop
+    T(j).Prio:=0;
+  end loop;
   Nb_caractere:=Natural'Input(Flux);  --ce nombre permet de savoir quand on doit arreter de lire le fichier
   while(i<Nb_caractere) loop --boucle tant qu'on a pas atteint le nombre de caractere
     C:=Character'Input(Flux);
-  --  Put(C);
+    T(Character'Pos(C)).Data:=C;
     Prio:=Integer'Input(Flux);
-  --  Put(Integer'Image(Prio));
-    huffman.Nb_Total_Caracteres:=Prio;
-    huffman.A:=creer_arbre(C,Prio);
+    T(Character'Pos(C)).Prio:=Prio;
     i:=i+Prio;
-    Insere(F,huffman,Prio);       -- on ajoute le caractere à la liste
-
   end loop;
+  for j in 0..256 loop -- on crée la file_priorite à partir du tableau nous nous sommes rendus compte trop tard
+  if T(j).Prio>0 then --que l'utilisation du type tableau dès le départ s'avairait plus malin dans ce cas
+  huffman.A:=creer_arbre(T(j).Data,T(j).Prio);
+
+  huffman.Nb_Total_Caracteres:=T(j).Prio;
+  Insere(F,huffman,T(j).Prio);
+end if;
+end loop;
 
   while(Get_Taille(F)>1) loop     -- creation de l'arbre
     Supprime(F,moins_prio1,prio1);
