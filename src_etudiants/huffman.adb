@@ -124,7 +124,7 @@ package body Huffman is
       -- lecture tant qu'il reste des caracteres
       while not End_Of_File(Fichier) loop -- on lit le fichier
         C := Character'Input(Flux);
-        Put(", "); Put(C);
+      --  Put(", "); Put(C);
         T(Character'Pos(C)).Prio:=T(Character'Pos(C)).Prio+1;
         T(Character'Pos(C)).Data:=C;
 

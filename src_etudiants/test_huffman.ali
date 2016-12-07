@@ -7,7 +7,7 @@ RV NO_IO
 RV NO_DEFAULT_INITIALIZATION
 RV SPARK_05
 
-U test_huffman%b	test_huffman.adb	61b9e38f NE OO SU
+U test_huffman%b	test_huffman.adb	75d9300b NE OO SU
 W ada%s			ada.ads			ada.ali
 W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
 W ada.streams%s		a-stream.adb		a-stream.ali
@@ -48,7 +48,7 @@ D s-stopoo.ads		20131010103753 b16154c2 system.storage_pools%s
 D s-traent.ads		20140730135025 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20140731130224 9d58a4c0 system.unsigned_types%s
 D s-wchcon.ads		20140718092328 1b7d22d2 system.wch_con%s
-D test_huffman.adb	20161207051857 a4b92f74 test_huffman%b
+D test_huffman.adb	20161207052408 b0d9fcf0 test_huffman%b
 X 1 ada.ads
 16K9*Ada 19e8 33|1r6 1r27 2r5 2r26 3r6 3r33 11r13 12r10
 X 4 a-inteio.ads
@@ -71,7 +71,6 @@ X 9 a-textio.ads
 X 13 dico.ads
 5K9*Dico 79e9 33|5w6 5r16
 14P14*Dico_Caracteres 33|14r6
-27U19*Affiche 33|20s1 37s1
 X 14 huffman.ads
 6K9*Huffman 81e12 33|4w6 4r19
 10R14*Arbre_Huffman 16e19 33|10r5
@@ -86,5 +85,5 @@ X 33 test_huffman.adb
 11p3 Fichier{7|44P9} 22m8 22r8 23r16 26m7 26r7 28m6 28r6 29r16 34m7 34r7
 12p3 Flux{7|42P9} 23m1 24r20 29m1 31r16
 13i3 i{integer} 24m1
-14p3 D{13|14P14} 19m1 20r9 36m1 37r9
+14p3 D{13|14P14} 19m1 36m1
 
