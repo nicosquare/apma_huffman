@@ -84,13 +84,13 @@ end Affiche;
 
 -- Lit dans un fichier ouvert en lecture, et affiche les valeurs lues
 
-procedure Fusion_Arbre(moins_prio1: in out Arbre_Huffman;moins_prio2: in Arbre_Huffman) is
+procedure Fusion_Arbre(moins_prio1: in out Arbre_Huffman;moins_prio2: in Arbre_Huffman) is -- permet de créer l'arbre composé des deux branches d'ordre de priorité connu
   A:Arbre:=new Noeud;
 
 begin
   A.filsdroit:=moins_prio1.A;
   A.filsgauche:=moins_prio2.A;
-  moins_prio1.Nb_Total_Caracteres:=moins_prio2.Nb_Total_Caracteres+moins_prio1.Nb_Total_Caracteres;
+  moins_prio1.Nb_Total_Caracteres:=moins_prio2.Nb_Total_Caracteres+moins_prio1.Nb_Total_Caracteres; -- on met à jour le poids de ce nouvel arbre_hoffmann
   moins_prio1.A:=A;
 end Fusion_Arbre;
 
@@ -101,7 +101,7 @@ function Cree_Huffman(Nom_Fichier : in String) return Arbre_Huffman is
 Fichier : Ada.Streams.Stream_IO.File_Type;
 Flux : Ada.Streams.Stream_IO.Stream_Access;
 C : Character;
-T : array(0..255) of cellule;
+T : array(0..255) of cellule; -- ce tableau sert à faire un premier enregistrement des characters présents dans le fichier
 I : Integer;
 F:File_Prio:=Cree_File(255);
 Huffman: Arbre_Huffman;
@@ -123,11 +123,11 @@ Put("Lecture des donnees: ");
 --Put(Integer(Octet'Input(Flux))); -- cast necessaire Octet -> Integer
 
 -- lecture tant qu'il reste des caracteres
-while not End_Of_File(Fichier) loop
+while not End_Of_File(Fichier) loop -- on lit le fichier
   C := Character'Input(Flux);
   Put(", "); Put(C);
   i:=0;
-  while(C/=T(i).Data and T(i).Prio/=0 and i<255) loop
+  while(C/=T(i).Data and T(i).Prio/=0 and i<255) loop -- on enregistre les données et priorités dans le tableau
     i:=i+1;
 
 
@@ -141,13 +141,14 @@ Close(Fichier);
 Put_Line("fermeture du fichier");
 
 i:=0;
-while(T(i).Prio>0 and i<255) loop
   huffman.A:=creer_arbre(T(i).Data,T(i).Prio);
+  while(T(i).Prio>0 and i<255) loop -- on crée la file_priorite à partir du tableau nous nous sommes rendus compte trop tard
+                                              --que l'utilisation du type tableau dès le départ s'avairait plus malin dans ce cas
   huffman.Nb_Total_Caracteres:=T(i).Prio;
   Insere(F,huffman,T(i).Prio);
   i:=i+1;
 end loop;
-while(Get_Taille(F)>1) loop
+while(Get_Taille(F)>1)    -- on crée l'abre en supprimant sortants les deux arbres les plus prioritaires et en inserant l'arbre fusionné.
   Supprime(F,moins_prio1,prio1);
   Supprime(F,moins_prio2,prio2);
   Fusion_Arbre(moins_prio1,moins_prio2);
@@ -160,7 +161,7 @@ end Cree_Huffman;
 -- Le format de stockage est celui decrit dans le sujet
 -- Retourne le nb d'octets ecrits dans le flux (pour les stats)
 
-procedure Ecrit_Arbre(A:in Arbre;Flux : Ada.Streams.Stream_IO.Stream_Access) is
+procedure Ecrit_Arbre(A:in Arbre;F:File_Prio) is    -- cette procédure recursive permet de réecrire l'arbre dans un programme.
 begin
   if A.filsgauche/=NULL then
     Ecrit_Arbre(A.filsgauche,Flux);
@@ -182,7 +183,7 @@ function Ecrit_Huffman(H : in Arbre_Huffman;Flux : Ada.Streams.Stream_IO.Stream_
   return Positive is
   	begin
 
-      Natural'Output(Flux,H.Nb_Total_Caracteres);
+      Natural'Output(Flux,H.Nb_Total_Caracteres);   -- permet de savoir quand il on a atteint la fin de l'abre lors de l'ouverture du fichier compressé.
   		Put("Ecriture des donnees: ");
   		Ecrit_Arbre(H.A,Flux);
       return 1;
@@ -200,8 +201,8 @@ function Lit_Huffman(Flux : Ada.Streams.Stream_IO.Stream_Access)
   huffman,moins_prio1,moins_prio2 : Arbre_Huffman;
   prio1,prio2:Integer;
 begin
-  Nb_caractere:=Natural'Input(Flux);
-  while(i<Nb_caractere) loop
+  Nb_caractere:=Natural'Input(Flux);  --ce nombre permet de savoir quand on doit arreter de lire le fichier
+  while(i<Nb_caractere) loop --boucle tant qu'on a pas atteint le nombre de caractere
     C:=Character'Input(Flux);
   --  Put(C);
     Prio:=Integer'Input(Flux);
@@ -209,11 +210,11 @@ begin
     huffman.Nb_Total_Caracteres:=Prio;
     huffman.A:=creer_arbre(C,Prio);
     i:=i+Prio;
-    Insere(F,huffman,Prio);
+    Insere(F,huffman,Prio);       -- on ajoute le caractere à la liste
 
   end loop;
 
-  while(Get_Taille(F)>1) loop
+  while(Get_Taille(F)>1) loop     -- creation de l'arbre
     Supprime(F,moins_prio1,prio1);
     Supprime(F,moins_prio2,prio2);
     Fusion_Arbre(moins_prio1,moins_prio2);
@@ -226,17 +227,18 @@ begin
 
 
 procedure Genere_Dic_Arbre(A: in Arbre; D:in out Dico_Caracteres;C:in out Code_Binaire) is
-  C1:Code_Binaire:=Cree_Code(C);
+  C1:Code_Binaire:=Cree_Code(C); -- fonction recursive pour le parcours de l'arbre
 begin
+
+  if A.filsdroit/=NULL then
+    Ajoute_Apres(ZERO,C);
+    Genere_Dic_Arbre(A.filsdroit,D,C);
+  end if;
   if A.filsgauche/=NULL then
 
     Ajoute_Apres(UN,C1);
     Genere_Dic_Arbre(A.filsgauche,D,C1);
     end if;
-  if A.filsdroit/=NULL then
-    Ajoute_Apres(ZERO,C);
-    Genere_Dic_Arbre(A.filsdroit,D,C);
-  end if;
 
 
   if A.filsgauche=NULL and A.filsdroit=NULL then
@@ -255,7 +257,7 @@ function Genere_Dictionnaire(H : in Arbre_Huffman) return Dico_Caracteres is
 
 
 begin
-  Put("a");
+  Put("a");       -- on a juste a appeler la fonction recursive
 Genere_Dic_Arbre(H.A,D,C);
 return D;
 

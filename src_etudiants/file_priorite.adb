@@ -70,21 +70,21 @@ begin
   if not Est_Pleine(F) then
 
     add.capacite:=F.Capacite;
-    add.Taille:=F.Taille+1;
+    add.Taille:=F.Taille+1;  -- on enregistre la taille de la liste si jamais l'élément se retrouve ne tête de liste
     add.Data:=D;
     add.Prio:=P;
-    if Est_Vide(F) then
+    if Est_Vide(F) then -- si la file est vide, il n'est pas nécessaire de faire une allocation seulement de rentrée la donnée dans le premier élément
       F.all:=add.all;
       Free(add);
       --F.Taille:=F.Taille+1;
     else
 
-      if add.Prio<F.Prio then
+      if add.Prio<F.Prio then -- lors de l'ajout la liste est triée pour faciliter la suppression d'éléments
 
         add.suiv:=F;
         F:=add;
       else
-          F.Taille:=F.Taille+1;
+          F.Taille:=F.Taille+1; -- si l'élément n'est pas en tête de liste on met à jour la taille
       while (courant.suiv/=NULL and i=0) loop
           if add.Prio<courant.suiv.Prio then
             i:=1;
@@ -118,7 +118,7 @@ procedure Supprime(F: in File_Prio; D: out Donnee; P: out Priorite) is
   if not Est_Vide(F) then
     D:=F.Data;
     P:=F.Prio;
-    if F.taille>1 then
+    if F.taille>1 then   -- si la taille est égale à 1 et retourner le premier élément il est juste nécessaire de mettre la taille à 0, la liste sera considéré vide
       F.Data:=F.suiv.Data;
       F.Prio:=F.suiv.Prio;
       act:=F.suiv;
