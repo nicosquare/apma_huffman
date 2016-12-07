@@ -1,0 +1,89 @@
+V "GNAT Lib v5"
+M P W=b
+P ZX
+
+RN
+RV NO_IO
+RV NO_DEFAULT_INITIALIZATION
+RV SPARK_05
+
+U test_huffman%b	test_huffman.adb	75d9300b NE OO SU
+W ada%s			ada.ads			ada.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.streams%s		a-stream.adb		a-stream.ali
+W ada.streams.stream_io%s  a-ststio.adb		a-ststio.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W dico%s		dico.adb		dico.ali
+W huffman%s		huffman.adb		huffman.ali
+
+D ada.ads		20070406091342 3ffc8e18 ada%s
+D a-except.ads		20140730140058 5250cb69 ada.exceptions%s
+D a-finali.ads		20140611123707 69f99942 ada.finalization%s
+D a-inteio.ads		20070406091342 f64b89a4 ada.integer_text_io%s
+D a-ioexce.ads		20140225151544 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20141120112812 119b8fb3 ada.streams%s
+D a-ststio.ads		20120709130952 c3455b31 ada.streams.stream_io%s
+D a-tags.ads		20140730140058 dc4d0634 ada.tags%s
+D a-textio.ads		20140717063745 386df5d4 ada.text_io%s
+D a-tiinio.ads		20140717063513 aa04e5d6 ada.text_io.integer_io%s
+D a-unccon.ads		20070406091342 f9eb8f06 ada.unchecked_conversion%s
+D code.ads		20161207051514 2a133b88 code%s
+D dico.ads		20161207051514 c5a2933d dico%s
+D huffman.ads		20161207045212 0dc17887 huffman%s
+D interfac.ads		20141120112812 6033a23f interfaces%s
+D i-cstrea.ads		20140801100435 e53d8b8e interfaces.c_streams%s
+D system.ads		20141031112219 1d274481 system%s
+D s-crtl.ads		20141120112812 0ebbdb71 system.crtl%s
+D s-exctab.ads		20140225151139 54135002 system.exception_table%s
+D s-ficobl.ads		20140718105747 078245e4 system.file_control_block%s
+D s-finmas.ads		20140225151139 814daec4 system.finalization_masters%s
+D s-finroo.ads		20120426095924 4ff27390 system.finalization_root%s
+D s-parame.ads		20140801093848 7e2a0d7f system.parameters%s
+D s-pooglo.ads		20110804083314 542f33d0 system.pool_global%s
+D s-soflin.ads		20140801100131 aa763b52 system.soft_links%s
+D s-stache.ads		20140225151139 a37c21ec system.stack_checking%s
+D s-stalib.ads		20150220094550 fa0a3617 system.standard_library%s
+D s-stoele.ads		20140225151139 2dc34a04 system.storage_elements%s
+D s-stopoo.ads		20131010103753 b16154c2 system.storage_pools%s
+D s-traent.ads		20140730135025 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20140731130224 9d58a4c0 system.unsigned_types%s
+D s-wchcon.ads		20140718092328 1b7d22d2 system.wch_con%s
+D test_huffman.adb	20161207052408 b0d9fcf0 test_huffman%b
+X 1 ada.ads
+16K9*Ada 19e8 33|1r6 1r27 2r5 2r26 3r6 3r33 11r13 12r10
+X 4 a-inteio.ads
+18K13*Integer_Text_IO[10|46] 33|1w10 2r9
+X 6 a-stream.ads
+36K13*Streams 87e16 33|3r10 3r37 11r17 12r14
+X 7 a-ststio.ads
+39K21*Stream_IO 223e26 33|3w18 3r45 11r25 12r22
+42P9*Stream_Access(6|39R9) 33|12r32
+44P9*File_Type 33|11r35
+46n23*In_File{46E9} 33|28r15
+46n32*Out_File{46E9} 33|22r17
+67U14*Create 33|22s1
+73U14*Open 33|28s1
+79U14*Close 33|26s1 34s1
+91V13*Stream{42P9} 33|23s9 29s9
+X 9 a-textio.ads
+49K13*Text_IO 471e16 33|1w31 2r30
+263U14*Put_Line 33|17s1 30s1
+X 13 dico.ads
+5K9*Dico 79e9 33|5w6 5r16
+14P14*Dico_Caracteres 33|14r6
+X 14 huffman.ads
+6K9*Huffman 81e12 33|4w6 4r19
+10R14*Arbre_Huffman 16e19 33|10r5
+24U19*Affiche 33|18s1 35s1
+33V18*Cree_Huffman{10R14} 33|16s4
+40V18*Ecrit_Huffman{positive} 33|24s4
+46V18*Lit_Huffman{10R14} 33|31s4
+55V18*Genere_Dictionnaire{13|14P14} 33|19s4 36s4
+X 33 test_huffman.adb
+9U11*Test_Huffman 9b11 38l5 38t17
+10r3 A{14|10R14} 16m1 18r9 19r24 24r18 31m1 35r9 36r24
+11p3 Fichier{7|44P9} 22m8 22r8 23r16 26m7 26r7 28m6 28r6 29r16 34m7 34r7
+12p3 Flux{7|42P9} 23m1 24r20 29m1 31r16
+13i3 i{integer} 24m1
+14p3 D{13|14P14} 19m1 36m1
+

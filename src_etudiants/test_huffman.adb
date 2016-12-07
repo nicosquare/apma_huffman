@@ -13,11 +13,11 @@ procedure Test_Huffman is
   i:Integer;
   D: Dico_Caracteres;
 begin
-A:=Cree_Huffman("mini.txt");
+A:=Cree_Huffman("longtemps.txt");
 Put_Line("premier Arbre");
 Affiche(A);
 D:=Genere_Dictionnaire(A);
-Affiche(D);
+--Affiche(D);
 
 Create(Fichier, Out_File,"test_hoffman.txt");
 Flux := Stream(Fichier);
@@ -34,5 +34,5 @@ A:=Lit_Huffman(Flux);
 Close(Fichier);
 Affiche(A);
 D:=Genere_Dictionnaire(A);
-Affiche(D);
+--Affiche(D);
 end Test_Huffman;
