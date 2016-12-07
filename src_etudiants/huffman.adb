@@ -125,10 +125,11 @@ Put("Lecture des donnees: ");
 -- lecture tant qu'il reste des caracteres
 while not End_Of_File(Fichier) loop
   C := Character'Input(Flux);
-  --Put(", "); Put(C);
+  Put(", "); Put(C);
   i:=0;
   while(C/=T(i).Data and T(i).Prio/=0 and i<255) loop
     i:=i+1;
+
 
   end loop;
   T(i).Data:=C;
@@ -138,6 +139,7 @@ end loop;
 
 Close(Fichier);
 Put_Line("fermeture du fichier");
+
 i:=0;
 while(T(i).Prio>0 and i<255) loop
   huffman.A:=creer_arbre(T(i).Data,T(i).Prio);
@@ -178,7 +180,7 @@ function Ecrit_Huffman(H : in Arbre_Huffman;Flux : Ada.Streams.Stream_IO.Stream_
   return Positive is
   	begin
 
-
+      Natural'Output(Flux,H.Nb_Total_Caracteres);
   		Put("Ecriture des donnees: ");
   		Ecrit_Arbre(H.A,Flux);
       return 1;
@@ -186,8 +188,40 @@ function Ecrit_Huffman(H : in Arbre_Huffman;Flux : Ada.Streams.Stream_IO.Stream_
 
  --Lit un arbre stocke dans un flux ouvert en lecture
 -- Le format de stockage est celui decrit dans le sujet
---function Lit_Huffman(Flux : Ada.Streams.Stream_IO.Stream_Access)
-  --return Arbre_Huffman;
+function Lit_Huffman(Flux : Ada.Streams.Stream_IO.Stream_Access)
+  return Arbre_Huffman is
+  Nb_caractere:Natural;
+  i:Natural:=0;
+  F:File_Prio:=Cree_File(255);
+  C:Character;
+  Prio:Integer;
+  huffman,moins_prio1,moins_prio2 : Arbre_Huffman;
+  prio1,prio2:Integer;
+begin
+  Nb_caractere:=Natural'Input(Flux);
+  while(i<Nb_caractere) loop
+    C:=Character'Input(Flux);
+  --  Put(C);
+    Prio:=Integer'Input(Flux);
+  --  Put(Integer'Image(Prio));
+    huffman.Nb_Total_Caracteres:=Prio;
+    huffman.A:=creer_arbre(C,Prio);
+    i:=i+Prio;
+    Insere(F,huffman,Prio);
+
+  end loop;
+
+  while(Get_Taille(F)>1) loop
+    Supprime(F,moins_prio1,prio1);
+    Supprime(F,moins_prio2,prio2);
+    Fusion_Arbre(moins_prio1,moins_prio2);
+    Insere(F,moins_prio1,moins_prio1.Nb_Total_Caracteres);
+  end loop;
+    Supprime(F,moins_prio1,prio1);
+    return moins_prio1;
+  end Lit_Huffman;
+
+
 
 
 -- Retourne un dictionnaire contenant les caracteres presents

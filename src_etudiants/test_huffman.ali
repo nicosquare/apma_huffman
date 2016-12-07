@@ -7,7 +7,7 @@ RV NO_IO
 RV NO_DEFAULT_INITIALIZATION
 RV SPARK_05
 
-U test_huffman%b	test_huffman.adb	4405e1a3 NE OO SU
+U test_huffman%b	test_huffman.adb	aba6e155 NE OO SU
 W ada%s			ada.ads			ada.ali
 W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
 W ada.streams%s		a-stream.adb		a-stream.ali
@@ -26,7 +26,7 @@ D a-tags.ads		20140730140058 dc4d0634 ada.tags%s
 D a-textio.ads		20140717063745 386df5d4 ada.text_io%s
 D a-tiinio.ads		20140717063513 aa04e5d6 ada.text_io.integer_io%s
 D a-unccon.ads		20070406091342 f9eb8f06 ada.unchecked_conversion%s
-D huffman.ads		20161206135842 cb1cc8c8 huffman%s
+D huffman.ads		20161206231743 66c80246 huffman%s
 D interfac.ads		20141120112812 6033a23f interfaces%s
 D i-cstrea.ads		20140801100435 e53d8b8e interfaces.c_streams%s
 D system.ads		20141031112219 1d274481 system%s
@@ -45,7 +45,7 @@ D s-stopoo.ads		20131010103753 b16154c2 system.storage_pools%s
 D s-traent.ads		20140730135025 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20140731130224 9d58a4c0 system.unsigned_types%s
 D s-wchcon.ads		20140718092328 1b7d22d2 system.wch_con%s
-D test_huffman.adb	20161206143516 827a0e2a test_huffman%b
+D test_huffman.adb	20161206234500 c00dc452 test_huffman%b
 X 1 ada.ads
 16K9*Ada 19e8 31|1r6 1r27 2r5 2r26 3r6 3r33 10r13 11r10
 X 4 a-inteio.ads
@@ -56,22 +56,26 @@ X 7 a-ststio.ads
 39K21*Stream_IO 223e26 31|3w18 3r45 10r25 11r22
 42P9*Stream_Access(6|39R9) 31|11r32
 44P9*File_Type 31|10r35
-46n32*Out_File{46E9} 31|17r17
-67U14*Create 31|17s1
-79U14*Close 31|21s1 26s1
-91V13*Stream{42P9} 31|18s9
+46n23*In_File{46E9} 31|24r15
+46n32*Out_File{46E9} 31|18r17
+67U14*Create 31|18s1
+73U14*Open 31|24s1
+79U14*Close 31|22s1 30s1
+91V13*Stream{42P9} 31|19s9 25s9
 X 9 a-textio.ads
 49K13*Text_IO 471e16 31|1w31 2r30
+263U14*Put_Line 31|15s1 26s1
 X 12 huffman.ads
 7K9*Huffman 80e12 31|4w6 4r19
 11R14*Arbre_Huffman 17e19 31|9r5
-25U19*Affiche 31|15s1
+25U19*Affiche 31|16s1 31s1
 34V18*Cree_Huffman{11R14} 31|14s4
-41V18*Ecrit_Huffman{positive} 31|19s4
+41V18*Ecrit_Huffman{positive} 31|20s4
+47V18*Lit_Huffman{11R14} 31|27s4
 X 31 test_huffman.adb
-8U11*Test_Huffman 8b11 28l5 28t17
-9r3 A{12|11R14} 14m1 15r9 19r18
-10p3 Fichier{7|44P9} 17m8 17r8 18r16 21m7 21r7 26m7 26r7
-11p3 Flux{7|42P9} 18m1 19r20
-12i3 i{integer} 19m1
+8U11*Test_Huffman 8b11 32l5 32t17
+9r3 A{12|11R14} 14m1 16r9 20r18 27m1 31r9
+10p3 Fichier{7|44P9} 18m8 18r8 19r16 22m7 22r7 24m6 24r6 25r16 30m7 30r7
+11p3 Flux{7|42P9} 19m1 20r20 25m1 27r16
+12i3 i{integer} 20m1
 

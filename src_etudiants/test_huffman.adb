@@ -12,6 +12,7 @@ procedure Test_Huffman is
   i:Integer;
 begin
 A:=Cree_Huffman("mini.txt");
+Put_Line("premier Arbre");
 Affiche(A);
 
 Create(Fichier, Out_File,"prout.txt");
@@ -20,9 +21,12 @@ i:=Ecrit_Huffman(A,Flux);
 
 Close(Fichier);
 
-
+Open(Fichier, In_File, "prout.txt");
+Flux := Stream(Fichier);
+Put_Line("Deuxieme Arbre");
+A:=Lit_Huffman(Flux);
 
 
 Close(Fichier);
-
+Affiche(A);
 end Test_Huffman;

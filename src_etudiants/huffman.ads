@@ -44,14 +44,14 @@ procedure Fusion_Arbre(moins_prio1: in out Arbre_Huffman;moins_prio2: in Arbre_H
 
 	-- Lit un arbre stocke dans un flux ouvert en lecture
 	-- Le format de stockage est celui decrit dans le sujet
-	--function Lit_Huffman(Flux : Ada.Streams.Stream_IO.Stream_Access)
-		--return Arbre_Huffman;
+	function Lit_Huffman(Flux : Ada.Streams.Stream_IO.Stream_Access)
+		return Arbre_Huffman;
 
 
 	-- Retourne un dictionnaire contenant les caracteres presents
 	-- dans l'arbre et leur code binaire (evite les parcours multiples)
 	-- de l'arbre
---	function Genere_Dictionnaire(H : in Arbre_Huffman) return Dico_Caracteres;
+	function Genere_Dictionnaire(H : in Arbre_Huffman) return Dico_Caracteres;
 
 
 
