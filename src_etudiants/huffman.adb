@@ -162,12 +162,14 @@ end Cree_Huffman;
 
 procedure Ecrit_Arbre(A:in Arbre;Flux : Ada.Streams.Stream_IO.Stream_Access) is
 begin
-  if A.filsdroit/=NULL then
-    Ecrit_Arbre(A.filsdroit,Flux);
-  end if;
   if A.filsgauche/=NULL then
     Ecrit_Arbre(A.filsgauche,Flux);
   end if;
+  if A.filsdroit/=NULL then
+    Ecrit_Arbre(A.filsdroit,Flux);
+  end if;
+
+
   if A.filsgauche=NULL and A.filsdroit=NULL then
     Character'Output(Flux,A.valeur);
     Integer'Output(Flux,A.occurence);
@@ -216,6 +218,7 @@ begin
     Supprime(F,moins_prio2,prio2);
     Fusion_Arbre(moins_prio1,moins_prio2);
     Insere(F,moins_prio1,moins_prio1.Nb_Total_Caracteres);
+
   end loop;
     Supprime(F,moins_prio1,prio1);
     return moins_prio1;
@@ -225,17 +228,17 @@ begin
 procedure Genere_Dic_Arbre(A: in Arbre; D:in out Dico_Caracteres;C:in out Code_Binaire) is
   C1:Code_Binaire:=Cree_Code(C);
 begin
-  if A.filsdroit/=NULL then
-    Ajoute_Apres(ZERO,C);
-    Affiche(C);
-    Genere_Dic_Arbre(A.filsdroit,D,C);
-  end if;
   if A.filsgauche/=NULL then
 
     Ajoute_Apres(UN,C1);
-    Affiche(C1);
     Genere_Dic_Arbre(A.filsgauche,D,C1);
+    end if;
+  if A.filsdroit/=NULL then
+    Ajoute_Apres(ZERO,C);
+    Genere_Dic_Arbre(A.filsdroit,D,C);
   end if;
+
+
   if A.filsgauche=NULL and A.filsdroit=NULL then
 
     Set_Code(A.valeur,C,D);

@@ -48,7 +48,7 @@ D s-stopoo.ads		20131010103753 b16154c2 system.storage_pools%s
 D s-traent.ads		20140730135025 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20140731130224 9d58a4c0 system.unsigned_types%s
 D s-wchcon.ads		20140718092328 1b7d22d2 system.wch_con%s
-D test_huffman.adb	20161207013931 800f80ea test_huffman%b
+D test_huffman.adb	20161207022026 800f80ea test_huffman%b
 X 1 ada.ads
 16K9*Ada 19e8 33|1r6 1r27 2r5 2r26 3r6 3r33 11r13 12r10
 X 4 a-inteio.ads

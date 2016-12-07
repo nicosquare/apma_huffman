@@ -80,6 +80,7 @@ begin
     else
 
       if add.Prio<F.Prio then
+
         add.suiv:=F;
         F:=add;
       else
