@@ -44,6 +44,8 @@ begin
         Put(B,2);
     end loop;
     New_Line;
+    Put("D:");
+    Affiche(D);
 
     Libere_Code(C);
     Put("E: ");
@@ -56,7 +58,7 @@ begin
     New_Line;
     Affiche(D);
     New_Line;
-    C := Cree_Code(D);
+    --C := Cree_Code(D);
     Put("Longueur C: ");
     Put(Longueur(C));
     New_Line;

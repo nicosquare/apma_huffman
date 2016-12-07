@@ -23,15 +23,34 @@ package body Code is
 
 	-- Copie un code existant
 	function Cree_Code(C : in Code_Binaire) return Code_Binaire is
-	Tmp : Code_Binaire := C;
+	Tmp : Code_Binaire := new Code_Binaire_Interne;
+  courant1,courant2 : Code_Binaire;
 	begin
+    courant1:=C;
+    courant2:=Tmp;
+    tmp.all:=C.all;
+    while(courant1.suiv/=NULL) loop
+      courant2.suiv:= new Code_Binaire_Interne;
+      courant2.suiv.all:=courant1.suiv.all;
+      courant1:=courant1.suiv;
+      courant2:=courant2.suiv;
+
+    end loop;
 		return Tmp;
 	end Cree_Code;
 
 	-- Libere un code
 	procedure Libere_Code(C : in out Code_Binaire) is
+  courant: Code_Binaire:=C;
 	begin
-		Libere(C);
+    while(C/=NULL) loop
+      courant:=C;
+      C:=C.suiv;
+      Libere(courant);
+
+
+    end loop;
+
 	end Libere_Code;
 
 	-- Retourne le nb de bits d'un code
@@ -95,13 +114,13 @@ package body Code is
     		if C1 = null then
     			raise Code_Vide with "Code vide";
     		else
-    			C := C1;
+    			C := Cree_Code(C1);
     		end if;
         else
             while Tmp.Suiv /= null loop
                 Tmp := Tmp.Suiv;
             end loop;
-            Tmp.Suiv := C1;
+            Tmp.Suiv := Cree_Code(C1);
         end if;
 	end Ajoute_Apres;
 
@@ -111,7 +130,7 @@ package body Code is
 		if C = null then
 			return null;
 		else
-			return new Iterateur_Code_Interne'(Val => C);
+			return new Iterateur_Code_Interne'(Val =>Cree_Code(C));
 		end if;
 	end Cree_Iterateur;
 
@@ -138,12 +157,15 @@ package body Code is
 	-- Retourne le prochain bit et avance dans l'iteration
 	-- Leve l'exception Code_Entierement_Parcouru si Has_Next(It) = False
 	procedure Next(It : in out Iterateur_Code; B : out Bit) is
+    courant: Code_Binaire;
 	begin
 		if not Has_Next(It) then
 			raise Code_Entierement_Parcouru  with "Code parcouru entierement";
 		else
 			B := It.Val.Val;
+      courant:=It.Val;
 			It.Val := It.Val.Suiv;
+    --  Libere_Code(courant);
 		end if;
 	end Next;
 

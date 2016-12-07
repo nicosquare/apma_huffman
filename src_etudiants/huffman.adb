@@ -2,6 +2,7 @@ with Ada.Integer_Text_Io; use Ada.Integer_Text_Io;
 with Ada.Text_Io; use Ada.Text_Io;
 with Ada.Unchecked_Deallocation;
 with file_priorite;
+with dico;
 -- Exemple de lecture/ecriture de donnes dans un fichier,
 -- a l'aide de flux Ada.
 
@@ -227,7 +228,8 @@ begin
 -- Retourne un dictionnaire contenant les caracteres presents
 -- dans l'arbre et leur code binaire (evite les parcours multiples)
 -- de l'arbre
---function Genere_Dictionnaire(H : in Arbre_Huffman) return Dico_Caracteres;
+function Genere_Dictionnaire(H : in Arbre_Huffman) return Dico_Caracteres is
+
 
 
 
