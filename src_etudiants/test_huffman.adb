@@ -19,13 +19,13 @@ Affiche(A);
 D:=Genere_Dictionnaire(A);
 Affiche(D);
 
-Create(Fichier, Out_File,"prout.txt");
+Create(Fichier, Out_File,"test_hoffman.txt");
 Flux := Stream(Fichier);
 i:=Ecrit_Huffman(A,Flux);
 
 Close(Fichier);
 
-Open(Fichier, In_File, "prout.txt");
+Open(Fichier, In_File, "test_hoffman.txt");
 Flux := Stream(Fichier);
 Put_Line("Deuxieme Arbre");
 A:=Lit_Huffman(Flux);

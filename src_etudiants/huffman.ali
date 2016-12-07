@@ -38,7 +38,7 @@ W system.storage_pools%s  s-stopoo.adb		s-stopoo.ali
 W system.storage_pools.subpools%s  s-stposu.adb	s-stposu.ali
 W system.stream_attributes%s  s-stratt.adb	s-stratt.ali
 
-U huffman%s		huffman.ads		803a9ea2 EE OO PK
+U huffman%s		huffman.ads		21358b03 EE OO PK
 W ada%s			ada.ads			ada.ali
 W ada.streams%s		a-stream.adb		a-stream.ali
 W ada.streams.stream_io%s  a-ststio.adb		a-ststio.ali
@@ -62,8 +62,8 @@ D a-textio.ads		20140717063745 386df5d4 ada.text_io%s
 D a-tiinio.ads		20140717063513 aa04e5d6 ada.text_io.integer_io%s
 D a-unccon.ads		20070406091342 f9eb8f06 ada.unchecked_conversion%s
 D a-uncdea.ads		20070406091342 f15a5ed1 ada.unchecked_deallocation%s
-D code.ads		20161206144929 eb86974b code%s
-D dico.ads		20161206215247 a5382a5f dico%s
+D code.ads		20161207051514 2a133b88 code%s
+D dico.ads		20161207051514 c5a2933d dico%s
 D file_priorite.ads	20161207045146 03c3da34 file_priorite%s
 D file_priorite.adb	20161207040850 62b65a37 file_priorite%b
 D huffman.ads		20161207045212 0dc17887 huffman%s
@@ -117,17 +117,17 @@ X 9 a-textio.ads
 X 12 a-uncdea.ads
 20u15*Unchecked_Deallocation 18|3w10 23r27
 X 13 code.ads
-6K9*Code 88e9 17|3w6 3r16
-11I17*Bit{natural}
-12i9*ZERO{11I17} 18|239r18
-13i9*UN{11I17} 18|244r18
-15P14*Code_Binaire 17|54r84 18|234r75 235r6 261r6
-18V18*Cree_Code{15P14} 18|261s20
-21V18*Cree_Code{15P14} 18|235s20
-24U19*Libere_Code 18|252s5
-36U19*Ajoute_Apres 18|239s5 244s5
+8K9*Code 110e9 17|3w6 3r16
+13I17*Bit{natural}
+14i9*ZERO{13I17} 18|239r18
+15i9*UN{13I17} 18|244r18
+20P14*Code_Binaire 17|54r84 18|234r75 235r6 261r6
+23V18*Cree_Code{20P14} 18|261s20
+26V18*Cree_Code{20P14} 18|235s20
+29U19*Libere_Code 18|252s5
+41U19*Ajoute_Apres 18|239s5 244s5
 X 14 dico.ads
-5K9*Dico 76e9 17|2w6 2r16
+5K9*Dico 79e9 17|2w6 2r16
 14P14*Dico_Caracteres 17|54r58 55r65 18|234r50 259r59 260r5
 19V18*Cree_Dico{14P14} 18|260s22
 33U19*Set_Code 18|251s5
@@ -176,7 +176,7 @@ X 17 huffman.ads
 . 266s1
 54p36 A{8P14} 18|234b28 238r6 240r22 242r6 245r22 249r6 249r28 251r14
 54p49 D{14|14P14} 18|234b41 240m34 245m35 251m25
-54p74 C{13|15P14} 18|234b66 235r30 239m23 240m36 251r23
+54p74 C{13|20P14} 18|234b66 235r30 239m23 240m36 251r23
 55V18*Genere_Dictionnaire{14|14P14} 55>38 18|259b10 269l5 269t24
 55r38 H{10R14} 18|259b30 266r18
 77R14 Noeud 79r30 18|11c8 16e17 23r51 35r16 88r16
@@ -221,9 +221,9 @@ X 18 huffman.adb
 200i9 prio2{integer} 224m28
 202i7 j{integer} 203r7
 213i7 j{integer} 214r8 215r28 215r38 217r34 218r22
-235p3 C1{13|15P14} 244m21 244r21 245m37 245r37 252m17 252r17
+235p3 C1{13|20P14} 244m21 244r21 245m37 245r37 252m17 252r17
 260p3 D{14|14P14} 266m22 266r22 267r8
-261p3 C{13|15P14} 266m24 266r24
+261p3 C{13|20P14} 266m24 266r24
 X 21 system.ads
 67M9*Address
 X 28 s-memory.ads
