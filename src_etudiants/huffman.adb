@@ -31,7 +31,7 @@ package body Huffman is
     -- pour lire/ecrire un octet dans un flux
 
 
-    function creer_arbre(C: Character;i: Integer) return Arbre is
+    function creer_arbre(C: Character;i: Integer) return Arbre is       --Cree un Arbre
       A:Arbre:=new Noeud;
     begin
       A.valeur:=C;
@@ -42,7 +42,7 @@ package body Huffman is
     end creer_arbre;
 
 
-    procedure Libere_Arbre(A : in out Arbre) is
+    procedure Libere_Arbre(A : in out Arbre) is       -- libere l'Arbre
     begin
       if (A.filsgauche/=NULL) then
         Libere_Arbre(A.filsgauche);
@@ -58,7 +58,7 @@ package body Huffman is
       Libere_Arbre(H.A);
     end Libere;
 
-    procedure Affiche_Arbre(A:in Arbre) is
+    procedure Affiche_Arbre(A:in Arbre) is      -- fonction recursive pour parcourir l'arbre Affiche a juste à l'appeler;
     begin
       if A.filsdroit/=NULL then
         Affiche_Arbre(A.filsdroit);
@@ -102,11 +102,11 @@ package body Huffman is
       Flux : Ada.Streams.Stream_IO.Stream_Access;
       C : Character;
       T : array(0..256) of cellule; -- ce tableau sert à faire un premier enregistrement des characters présents dans le fichier
-      F:File_Prio:=Cree_File(256);
+      F:File_Prio:=Cree_File(256);    --  file priorite
       Huffman: Arbre_Huffman;
       moins_prio1 : Arbre_Huffman;
-      moins_prio2 : Arbre_Huffman;
-      prio1 : Integer;
+      moins_prio2 : Arbre_Huffman;          -- elements intermediaires pour la fusion
+      prio1 : Integer;      --elements facilitants la fusion avec l'utilisations de fonctions de file_priorite
       prio2: Integer;
     begin
       for j in 0..256 loop
@@ -193,11 +193,11 @@ return Arbre_Huffman is
   Nb_caractere:Natural;
   T : array(0..256) of cellule;     -- tableau dont le nombre de case correspont à la representation décimale des Characters
   i:Natural:=0;
-  F:File_Prio:=Cree_File(256);
+  F:File_Prio:=Cree_File(256);    --file prioritaire pour la creation de l'arbre
   C:Character;
   Prio:Integer;
-  huffman,moins_prio1,moins_prio2 : Arbre_Huffman;
-  prio1,prio2:Integer;
+  huffman,moins_prio1,moins_prio2 : Arbre_Huffman;      --elements intermedaires pour la fusion des arbres
+  prio1,prio2:Integer;                  -- elements facilitants l'utilisation des fonctions de file_priorite
 begin
   for j in 0..256 loop
     T(j).Prio:=0;
@@ -246,7 +246,7 @@ begin
   end if;
 
 
-  if A.filsgauche=NULL and A.filsdroit=NULL then
+  if A.filsgauche=NULL and A.filsdroit=NULL then    -- les données ne sont présentes que sur les feuilles
 
     Set_Code(A.valeur,C,D);
     Libere_Code(C1);
