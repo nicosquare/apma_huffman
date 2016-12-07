@@ -129,6 +129,19 @@ package body Dico is
 		end if;
 	end Get_Code;
 
+	-- Retourne le caractere d'un code binaire
+	function Get_Char(D: in Dico_Caracteres; Code : in Code_Binaire) return Character is
+    Tmp: Dico_Caracteres := D;
+    begin
+        while Tmp /= null loop
+            if Compare_Code(Tmp.Infos.Code,Code) then
+                return Tmp.Char;
+            end if;
+            Tmp := Tmp.Suiv;
+        end loop;
+        return Character'Val(16#00#); 
+    end Get_Char; 
+
 	-- Retourne les infos associees a un caractere
 	--  -> leve l'exception Caractere_Absent si C n'est pas dans D
 	function Get_Infos(C : Character; D : Dico_Caracteres) return Info_Caractere is

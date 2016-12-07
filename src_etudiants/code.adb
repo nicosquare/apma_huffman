@@ -1,4 +1,5 @@
-with Ada.Integer_Text_IO,Ada.Text_IO; use Ada.Integer_Text_IO,Ada.Text_IO; with Ada.Unchecked_Deallocation;
+with Ada.Text_IO, Ada.Integer_Text_Io, Code, Ada.Streams.Stream_IO, Ada.IO_Exceptions, Ada.Command_line, Ada.Unchecked_Deallocation;
+use Ada.Text_IO, Ada.Integer_Text_Io, Code, Ada.Streams.Stream_IO, Ada.Command_line;
 package body Code is
 
 	-- Definition Code_Binaire_Interne
@@ -171,5 +172,96 @@ package body Code is
     --  Libere_Code(courant);
 		end if;
 	end Next;
+
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+
+	-- Comparer deux codes
+	function Compare_Code(C: in Code_Binaire; D: in Code_Binaire) return boolean is 
+	begin
+		if C = null and D = null 
+		then 
+			return true; 
+		end if;
+		if C = null and D /= null then 
+			return false; 
+		end if;
+		if C /= null and D = null then 
+			return false; 
+		end if;
+		if C.Val = D.Val 
+			then return (Compare_Code(C.Suiv,D.Suiv));
+		else 
+			return false; 
+		end if;
+	end Compare_Code;
+
+	-- Supprimmer le bit en queue d'une suite de Bits
+    procedure Supprimer_Avant(B: out Bit; C: in out Code_Binaire) is
+    Tmp: Code_Binaire := C;
+    begin
+        if C = null then
+            raise Code_Vide with "Code vide";
+        else 
+            C := C.Suiv;
+            B := Tmp.Val;
+        end if;
+    end Supprimer_Avant; 
+
+    -- Ajuster la taille d'un code à certain quantite de bits donnée
+    procedure Supprimer_Bits_Avant(C: in out Code_Binaire; n: in Integer; D: out Code_Binaire) is
+    B : Bit;
+    begin
+        D := Cree_Code;
+        if Longueur(C) < n then 
+        	return; 
+    	end if;
+        for i in 1..n loop
+            Supprimer_Avant(B,C);
+            Ajoute_Apres(B,D);
+        end loop;
+    end Supprimer_Bits_Avant;
+
+    -- Transformer un Code_Binaire en Octet
+    function Convertir_En_Octet(C: in Code_Binaire) return Octet is
+    Tmp : Code_Binaire := C;
+    O: Octet := 0;
+    begin
+        for i in Integer range 0..7 loop
+            O := O + Octet(Tmp.Val*(2**(7-i)));
+            Tmp := Tmp.Suiv;
+        end loop;
+        return O; 
+    end Convertir_En_Octet;
+
+    -- Transformer un Octet en Code_Binaire
+    function Convertir_En_Code(O: in Octet) return Code_Binaire is
+    Tmp : Integer := Integer(O);
+    C : Code_Binaire := Cree_Code;
+    begin
+        for i in Integer range 0..7 loop
+            Ajoute_Avant(Bit(Integer(Tmp-Integer(Tmp/2)*2)),C);
+            Tmp := Integer(Tmp/2);
+        end loop;
+        return C; 
+    end Convertir_En_Code;
+
+    -- Inserer a la queue d'une suire de Bits un Octet
+	procedure Inserer_Octet_Queue(C: in out Code_Binaire; O: in Octet) is
+	begin
+		Ajoute_Apres(Convertir_En_Code(O),C);
+	end Inserer_Octet_Queue;    
+
+	-- Prens un code pour le convertir en Octets selon la longueur
+	procedure Ecrire_Binaire(C: in out Code_Binaire; Flux : in out Stream_Access) is
+	Tmp : Code_Binaire := Cree_Code;
+	begin
+		while Longueur(C) >= 8 loop
+			Supprimer_Bits_Avant(C,8,Tmp);
+			Octet'Write(Flux,Convertir_En_Octet(Tmp));
+		end loop;
+		return;
+	end Ecrire_Binaire; 
+
 
 end Code;

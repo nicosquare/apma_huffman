@@ -24,21 +24,25 @@ procedure tp_huffman is
     I : Integer;
 	begin
 
+		-- Initialiser le flux de sortie
 		Create(Fichier_Out,Out_File,Nom_Fichier_Out);
         Flux_Out := Stream(Fichier_Out);
-		
+		-- Creer arbre Huffman à partir de fichier
 		H := Cree_Huffman(Nom_Fichier_In);		
+		-- Creer Dico à partir d'arbre Huffman
 		D := Genere_Dictionnaire(H);
-
+		-- Ecrite l'arbre Huffman sur le fichier de sortie
 		I := Ecrit_Huffman(H,Flux_Out);
 
-		Affiche(D);
-
 		Open_Fichier(Fichier_In,Flux_In,Nom_Fichier_In);
-
+		-- Commencer à lire le text en le transformant en Octets
 		while not End_Of_File(Fichier_In) loop
+            -- Lire caractère par caractêre
             Character'Read(Flux_In,C);
-            -- ??
+            -- Get code selon le Dico
+            Cod := Get_Code(C,D);
+            -- Transformer le code à Octet et l'écrire
+            Ecrire_Binaire(Cod,Flux_Out);
         end loop;
 
         Close(Fichier_In);
@@ -55,14 +59,36 @@ procedure tp_huffman is
 
 	procedure Decompresse(Nom_Fichier_In, Nom_Fichier_Out : in String) is
 	
+		procedure Ecrire_Text(C: in out Code_Binaire; D: in Dico_Caracteres; Flux: in out Stream_Access) is
+            Tmp : Code_Binaire;
+            B : Bit;
+            L : Integer :=  Longueur(C);
+            Char : Character;
+            Nb_Character : Integer := Nb_Total_Caracteres(D);
+        begin
+            for i in Integer range 1..L loop
+                Supprimer_Avant(B,C);
+                Ajoute_Apres(B,Tmp);
+                Char := Get_Char(D,Tmp);
+                if Char /= Character'Val(16#00#) then
+                    Character'Write(Flux,Char);
+                    Nb_Character := Nb_Character - 1;
+                    if Nb_Character = 0 then 
+                    	return; 
+                	end if;
+                    Tmp := Cree_Code;
+                end if;
+            end loop;
+            C := Tmp;
+        end Ecrire_Text;
+
 	Fichier_In : Ada.Streams.Stream_IO.File_Type;
 	Fichier_Out : Ada.Streams.Stream_IO.File_Type;
 	Flux_In: Stream_Access;
 	Flux_Out: Stream_Access;
 	H : Arbre_Huffman;
 	D : Dico_Caracteres;
-    C : Character;
-    Cod : Code_Binaire;
+    Cod : Code_Binaire := Cree_Code;
     O : Octet;
 	begin
 		
@@ -76,7 +102,8 @@ procedure tp_huffman is
 
 		while not End_Of_File(Fichier_In) loop
             Octet'Read(Flux_In,O);
-        	-- ??    
+        	Inserer_Octet_Queue(Cod,O);
+        	Ecrire_Text(Cod,D,Flux_Out);    
         end loop;
 
 		return;
